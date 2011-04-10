@@ -80,10 +80,28 @@
 		<!-- END                         -->
 		<!--=============================-->
 
+<!-- ========= game.js ===== -->
+    <script>
+      if (!window.console) {
+	window.console = {log: function() {}};
+      }
+      var $g = {};
+      $g.resourceBaseHref = './';
+      $g.ajaxBaseHref = './json/';
+    </script>
+    <script src="js/gjs/gjs-dev.js"></script>
+
+<!-- ======== game.js ====== -->
+
+    <script src="js/main.js"></script>
+    
 </head>
 <body>
-  <canvas id="gamecanvas">
+  <center>
+  <h1> The Game </h1> 
+  <canvas id="jsgamecanvas">
     Your browser does not support HTML 5 Canvas API
   </canvas>
+  </center>
 </body>
 </html> 
