@@ -33,18 +33,23 @@ function GameManager() {
         //
         // Handle Events
         //
-        var events = gamejs.event.get()
-        for each( var event in events ) {
+        var events = gamejs.event.get();
+        for( var i=0; i<events.length; i++ ) {
+            var event = events[i];
             if (event.type === gamejs.event.KEY_UP) {
-                for each( var obj in this.gameObjects ) {
-                    if( obj.keyUp )
-                        obj.keyUp( event.key );
-                }
+                this.gameObjects.forEach( 
+                    function(obj) {
+                        if( obj.keyUp )
+                            obj.keyUp( event.key );
+                    }
+                );
             } else if (event.type == gamejs.event.KEY_DOWN) {
-                for each( var obj in this.gameObjects ) {
-                    if( obj.keyDown )
-                        obj.keyDown( event.key );
-                }
+                this.gameObjects.forEach( 
+                    function(obj) {
+                        if( obj.keyDown )
+                            obj.keyDown( event.key );
+                    }
+                );
             }
         }
         
@@ -55,12 +60,14 @@ function GameManager() {
         g_World.Step( dt, 10 );
         
         // Game Objects
-        for each( var object in this.gameObjects ) {
+        for( var i=0; i<this.gameObjects.length; i++ ) {
+            var object = this.gameObjects[i];
             if( object.update)
                 object.update( dt );
         }
         
-        for each( var object in this.gameObjects ) {
+        for( var i=0; i<this.gameObjects.length; i++ ) {
+            var object = this.gameObjects[i];
             if( object.render )
                 object.render( this.display );
         }
@@ -77,14 +84,16 @@ function GameManager() {
     }
     
     this.keyDown = function( event ) {
-        for each( var obj in this.objects ) {
+        for( var i=0; i<this.gameObjects.length; i++ ) {
+            var obj = this.gameObjects[i];
             if( obj.keyDown )
                 obj.keyDown( event );
         }
     }
     
     this.keyUp = function( event ) {
-        for each( var obj in this.objects ) {
+        for( var i=0; i<this.gameObjects.length; i++ ) {
+            var obj = this.gameObjects[i];
             if( obj.keyDown )
                 obj.keyUp( event );
         }
