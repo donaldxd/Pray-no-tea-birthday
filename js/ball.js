@@ -7,7 +7,7 @@ var gamejs = require("gamejs");
 function Ball(center) {
     this.center = center;
     this.growPerSec = Ball.GROW_PER_SEC;
-    this.radius = this.growPerSec * 2;
+    this.radius = 20;//this.growPerSec * 2;
     this.color = 0;
     
     this.startUpBall = function() {
@@ -35,7 +35,7 @@ function Ball(center) {
         center[0] = this.body.GetCenterPosition().x;
         center[1] = this.body.GetCenterPosition().y;
         
-        gamejs.draw.circle(display, rgbColor, center, 20, lineWidth);
+        gamejs.draw.circle(display, rgbColor, center, this.radius, lineWidth);
     };
     
     /*
@@ -46,6 +46,15 @@ function Ball(center) {
             this.growPerSec = -this.growPerSec;
         }
     };*/
+    
+    this.keyDown = function( key ) {
+        if( key == gamejs.event.K_RIGHT ) {
+            var vel = this.body.GetLinearVelocity();
+            //vel += new b2Vec2( 1, 0 );
+            this.body.SetLinearVelocity( vel );  
+            this.radius += 5;
+        }
+    }
 };
 
 Ball.MAX_SIZE = 200;

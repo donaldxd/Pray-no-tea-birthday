@@ -31,6 +31,24 @@ function GameManager() {
         var dt = ( thisFrame - this.lastFrame )/1000;
         this.lastFrame = thisFrame;
         
+        //
+        // Handle Events
+        //
+        var events = gamejs.event.get()
+        for each( var event in events ) {
+            if (event.type === gamejs.event.KEY_UP) {
+                for each( var obj in this.gameObjects ) {
+                    if( obj.keyUp )
+                        obj.keyUp( event.key );
+                }
+            } else if (event.type == gamejs.event.KEY_DOWN) {
+                for each( var obj in this.gameObjects ) {
+                    if( obj.keyDown )
+                        obj.keyDown( event.key );
+                }
+            }
+        }
+        
         // Clear the canvas
         this.display.clear();
         
@@ -45,7 +63,7 @@ function GameManager() {
         
         for each( var object in this.gameObjects ) {
             if( object.render )
-                object.render( this.display ); // What parameters?
+                object.render( this.display );
         }
     };
     
@@ -57,5 +75,19 @@ function GameManager() {
     
     this.removeGameObject = function( object ) {
         this.gameObjects.removeObject( object );
+    }
+    
+    this.keyDown = function( event ) {
+        for each( var obj in this.objects ) {
+            if( obj.keyDown )
+                obj.keyDown( event );
+        }
+    }
+    
+    this.keyUp = function( event ) {
+        for each( var obj in this.objects ) {
+            if( obj.keyDown )
+                obj.keyUp( event );
+        }
     }
 }
