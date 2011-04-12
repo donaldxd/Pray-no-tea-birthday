@@ -10,7 +10,7 @@ function Box() {
         // Physics
         var shapeDef = new b2BoxDef();
         shapeDef.restitution = 1.0;
-        shapeDef.extents.Set( w, h );
+        shapeDef.extents.Set( w/2, h/2 );
         
         var bodyDef = new b2BodyDef();
         bodyDef.AddShape( shapeDef );
