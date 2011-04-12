@@ -3,7 +3,6 @@ var gamejs = require('gamejs');
 function GameManager() {
     
     this.gameObjects = new Array();
-    this.lastFrame = new Date().getTime();
     this.display = g_Display;
     
     this.startUpGameManager = function() {
@@ -25,11 +24,11 @@ function GameManager() {
         return this;
     };
     
-    this.gameTick = function() {
-        //console.print("FPS\n")
-        var thisFrame = new Date().getTime();
-        var dt = ( thisFrame - this.lastFrame )/1000;
-        this.lastFrame = thisFrame;
+    this.gameTick = function( dt ) {
+        if( dt >= 100 )
+            return;
+        
+        dt /= 1000.0;
         
         //
         // Handle Events
