@@ -10,10 +10,14 @@ function AppManager() {
         var ball2 = new Ball( [500,120] );
         ball2.startUpBall();
         
-        var ball3 = new Ball( [600,100] );
+        var ball3 = new Ball( [500,30] );
         ball3.startUpBall();
         
+        var box = new Box();
+        box.startUpBox( [400,300], 300, 20 );
+        
         // Add some ground
+        
         var boxDef = new b2BoxDef();
         boxDef.extents.Set( 600, 30 );
         boxDef.restitution = 0.0;
