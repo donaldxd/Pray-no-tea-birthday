@@ -27,14 +27,14 @@ function GameManager() {
         // Clear the canvas
         this.display.clear();
         
-        for( x in this.gameObjects ) {
-            if( this.gameObjects[x].update)
-                this.gameObjects[x].update( dt );
+        for each( var object in this.gameObjects ) {
+            if( object.update)
+                object.update( dt );
         }
         
-        for( x in this.gameObjects ) {
-            if( this.gameObjects[x].render )
-                this.gameObjects[x].render( this.display ); // What parameters?
+        for each( var object in this.gameObjects ) {
+            if( object.render )
+                object.render( this.display ); // What parameters?
         }
     };
     
