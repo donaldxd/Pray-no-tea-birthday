@@ -17,7 +17,7 @@ function Ball(center) {
         var circleSd = new b2CircleDef();
         circleSd.density = 1.0;
         circleSd.radius = 20;
-        circleSd.restitution = 1.0;
+        circleSd.restitution = 0.3;
         circleSd.friction = 0;
         
         var circleBd = new b2BodyDef();
@@ -47,14 +47,14 @@ function Ball(center) {
         }
     };*/
     
-    this.keyDown = function( key ) {
-        if( key == gamejs.event.K_RIGHT ) {
-            var vel = this.body.GetLinearVelocity();
-            //vel += new b2Vec2( 1, 0 );
-            this.body.SetLinearVelocity( vel );  
-            this.radius += 5;
-        }
-    }
+//     this.keyDown = function( key ) {
+//         if( key == gamejs.event.K_RIGHT ) {
+//             var vel = this.body.GetLinearVelocity();
+//             //vel += new b2Vec2( 1, 0 );
+//             this.body.SetLinearVelocity( vel );  
+//             this.radius += 5;
+//         }
+//     }
     
     this.nextColor = function() {
         this.color += 1;
