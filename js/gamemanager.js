@@ -1,8 +1,9 @@
 var gamejs = require('gamejs');
+var BinaryHeap = require('gamejs/utils/binaryheap').BinaryHeap;
 
 function GameManager() {
     
-    this.gameObjects = new Array();
+    this.gameObjects = new BinaryHeap( function(obj) { return obj.zOrder; } );
     this.display = g_Display;
     
     this.startUpGameManager = function() {
@@ -37,14 +38,16 @@ function GameManager() {
         for( var i=0; i<events.length; i++ ) {
             var event = events[i];
             if (event.type === gamejs.event.KEY_UP) {
-                this.gameObjects.forEach( 
+                var content = this.gameObjects.content;
+                content.forEach( 
                     function(obj) {
                         if( obj.keyUp )
                             obj.keyUp( event.key );
                     }
                 );
             } else if (event.type == gamejs.event.KEY_DOWN) {
-                this.gameObjects.forEach( 
+                var content = this.gameObjects.content;
+                content.forEach( 
                     function(obj) {
                         if( obj.keyDown )
                             obj.keyDown( event.key );
@@ -60,40 +63,38 @@ function GameManager() {
         g_World.Step( dt, 10 );
         
         // Game Objects
-        for( var i=0; i<this.gameObjects.length; i++ ) {
-            var object = this.gameObjects[i];
+        for( var i=0; i<this.gameObjects.size(); i++ ) {
+            var object = this.gameObjects.content[i];
             if( object.update)
                 object.update( dt );
         }
         
-        for( var i=0; i<this.gameObjects.length; i++ ) {
-            var object = this.gameObjects[i];
+        for( var i=0; i<this.gameObjects.size(); i++ ) {
+            var object = this.gameObjects.content[i];
             if( object.render )
                 object.render( this.display );
         }
     };
     
     this.addGameObject = function( object ) {
-        //TODO: Use a heap
         this.gameObjects.push( object );
-        this.gameObjects.sort( function(a,b) { return a.zOrder - b.zOrder; } );
     }
     
     this.removeGameObject = function( object ) {
-        this.gameObjects.removeObject( object );
+        this.gameObjects.remove( object );
     }
     
     this.keyDown = function( event ) {
-        for( var i=0; i<this.gameObjects.length; i++ ) {
-            var obj = this.gameObjects[i];
+        for( var i=0; i<this.gameObjects.size(); i++ ) {
+            var object = this.gameObjects.content[i];
             if( obj.keyDown )
                 obj.keyDown( event );
         }
     }
     
     this.keyUp = function( event ) {
-        for( var i=0; i<this.gameObjects.length; i++ ) {
-            var obj = this.gameObjects[i];
+        for( var i=0; i<this.gameObjects.size(); i++ ) {
+            var object = this.gameObjects.content[i];
             if( obj.keyDown )
                 obj.keyUp( event );
         }
