@@ -14,24 +14,25 @@ function AppManager() {
         ball2.startUpBall();
         ball2.nextColor();
         
-        var ball3 = new Ball( [500,30] );
+        var ball3 = new Ball( [510,30] );
         ball3.startUpBall();
         
-        var box = new Box();
-        box.startUpBox( [400,300], 300, 20 );
+        new Box().startUpBox( [300,300], 500, 10 );
+        new Box().startUpBox( [50, 0], 10, 600 );
+        new Box().startUpBox( [600, 0], 10, 600 );
         
         // Add some ground
         
-        var boxDef = new b2BoxDef();
-        boxDef.extents.Set( 600, 30 );
-        boxDef.restitution = 0.0;
-        
-        var groundBodyDef = new b2BodyDef();
-        groundBodyDef.AddShape( boxDef );
-        groundBodyDef.position.Set( 300, 300 );
-        
-        var ground = g_World.CreateBody( groundBodyDef );
-        console.log( ground );
+//         var boxDef = new b2BoxDef();
+//         boxDef.extents.Set( 600, 30 );
+//         boxDef.restitution = 0.0;
+//         
+//         var groundBodyDef = new b2BodyDef();
+//         groundBodyDef.AddShape( boxDef );
+//         groundBodyDef.position.Set( 300, 300 );
+//         
+//         var ground = g_World.CreateBody( groundBodyDef );
+//         console.log( ground );
     };
 }
 
