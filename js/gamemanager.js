@@ -9,6 +9,13 @@ function GameManager() {
     this.startUpGameManager = function() {
         g_GameManager = this;
         
+        // Create the world ( physics )
+        var worldAABB = new b2AABB();
+        worldAABB.minVertex.Set(-1000, -1000);
+        worldAABB.maxVertex.Set(1000, 1000);
+        var gravity = new b2Vec2(0, 300);
+        g_World = new b2World(worldAABB, gravity, true); 
+        
         // Startup the application manager
         this.appManager = new AppManager().startUpAppManager();
         
@@ -27,6 +34,10 @@ function GameManager() {
         // Clear the canvas
         this.display.clear();
         
+        // Physics engine
+        g_World.Step( dt );
+        
+        // Game Objects
         for each( var object in this.gameObjects ) {
             if( object.update)
                 object.update( dt );
