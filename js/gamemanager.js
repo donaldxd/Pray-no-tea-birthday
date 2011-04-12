@@ -53,7 +53,7 @@ function GameManager() {
         this.display.clear();
         
         // Physics engine
-        g_World.Step( dt );
+        g_World.Step( dt, 10 );
         
         // Game Objects
         for each( var object in this.gameObjects ) {
