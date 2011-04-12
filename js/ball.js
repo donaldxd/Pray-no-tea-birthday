@@ -55,18 +55,20 @@ function Ball(center) {
             this.radius += 5;
         }
     }
+    
+    this.nextColor = function() {
+        this.color += 1;
+        if (this.color > Ball.COLORS.length) {
+            this.color = 0;
+        }
+    };
 };
 
 Ball.MAX_SIZE = 200;
 Ball.GROW_PER_SEC = 50;
 Ball.COLORS = ['#ff0000', '#00ff00', '#0000cc'];
 
-Ball.prototype.nextColor = function() {
-    this.color += 1;
-    if (this.color > Ball.COLORS.length) {
-        this.color = 0;
-    }
-};
+
 
 // Inherit from GameObject
 Ball.prototype = new GameObject();

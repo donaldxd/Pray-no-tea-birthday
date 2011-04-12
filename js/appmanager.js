@@ -6,9 +6,13 @@ function AppManager() {
         
         this.ball = new Ball( [100,100] );
         this.ball.startUpBall();
+        this.ball.nextColor();
+        this.ball.nextColor();
+        this.ball.nextColor();
         
         var ball2 = new Ball( [500,120] );
         ball2.startUpBall();
+        ball2.nextColor();
         
         var ball3 = new Ball( [500,30] );
         ball3.startUpBall();
