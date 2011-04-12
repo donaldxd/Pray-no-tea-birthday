@@ -4,6 +4,8 @@ function AppManager() {
     this.startUpAppManager = function() {
         g_AppManager = this;
         
+        g_World.SetFilter( new CollisionFilter() );
+        
         this.ball = new Ball( [100,100] );
         this.ball.startUpBall();
         this.ball.nextColor();

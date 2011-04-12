@@ -15,6 +15,7 @@ function Box() {
         var bodyDef = new b2BodyDef();
         bodyDef.AddShape( shapeDef );
         bodyDef.position.Set( center[0], center[1] );
+        bodyDef.userData = this;
         this.body = g_World.CreateBody( bodyDef );    
     };
     

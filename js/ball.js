@@ -23,6 +23,7 @@ function Ball(center) {
         var circleBd = new b2BodyDef();
         circleBd.AddShape(circleSd);
         circleBd.position.Set( center[0], center[1] );
+        circleBd.userData = this;
         this.body = g_World.CreateBody(circleBd);    
     };
     

@@ -16,6 +16,7 @@ function Player() {
         var circleBd = new b2BodyDef();
         circleBd.AddShape(circleSd);
         circleBd.position.Set( x, y );
+        circleBd.userData = this;
         this.body = g_World.CreateBody(circleBd);
     };
     
