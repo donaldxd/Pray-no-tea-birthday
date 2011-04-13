@@ -17,9 +17,22 @@ function Camera() {
     };
     
     this.update = function( dt ) {
-        //var c = p2g( this.body.GetWorldCenter() );
-        this.x = 0;// c.x - SCREEN_WIDTH/2;
-        this.y = 0;//c.y - SCREEN_HEIGHT/2;
+        var c = this.body.GetWorldCenter();
+        this.x = p2g(c.x) - SCREEN_WIDTH/2;
+        this.y = 0;//p2g(c.y) - SCREEN_HEIGHT/2;
+        
+        //
+        // Bound checking
+        //
+        if( this.x < 0 )
+            this.x = 0;
+        else if( this.x > this.MAX_WIDTH - SCREEN_WIDTH )
+            this.x = this.MAX_WIDTH - SCREEN_WIDTH;
+        
+//         if( this.y < 0 )
+//             this.y = 0;
+//         else if( this.y > this.MAX_HEIGHT - SCREEN_HEIGHT )
+//             this.x = this.MAX_HEIGHT - SCREEN_HEIGHT;
     }
 }
 
