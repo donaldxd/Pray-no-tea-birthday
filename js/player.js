@@ -39,8 +39,11 @@ function Player() {
             vel.x = -this.velocity;//new b2Vec2( -this.velocity, 0 );
         }
         else if( key == KEY_UP ) {
-            vel.y = -this.velocity * 2;
-            //this.body.ApplyImpulse(new b2Vec2(500.0, -3000.0), this.body.GetCenterPosition() );
+//             vel.y = -this.velocity * 2;
+            var point = this.body.GetWorldCenter();
+            //console.log( point.x + ", " + point.y );
+            var force = new b2Vec2(0.0, -100000.0);
+            this.body.ApplyImpulse( force, point );
         }
         
         // Upper limit
