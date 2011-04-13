@@ -38,10 +38,21 @@ function Player() {
         else if( key == KEY_LEFT ) {
             vel.x = -this.velocity;
         }
-        else if( key == KEY_UP ) {
+        else if( key == KEY_UP && this.canJump() ) {
             this.body.ApplyImpulse( this.jumpForce, this.body.GetWorldCenter() );
         }
     };
+    
+    this.canJump = function() {
+        var pos = this.body.GetPosition();
+        var halfHeight = ( this.height / PPM ) * 0.5;
+        var from = b2Vec2.Make( pos.x, pos.y + halfHeight + 0.01 );
+        var to = b2Vec2.Make( pos.x, pos.y + halfHeight + 0.05 );
+        
+        var vector = g_World.RayCastAll(from, to);
+        console.log( vector );
+        return vector.length == 1;
+    }
     
     this.shouldCollide = function( obj ) {
         if( obj instanceof Box )
