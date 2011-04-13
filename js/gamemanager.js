@@ -10,11 +10,11 @@ function GameManager() {
         g_GameManager = this;
         
         // Create the world ( physics )
-        var worldAABB = new b2AABB();
-        worldAABB.minVertex.Set(-1000, -1000);
-        worldAABB.maxVertex.Set(1000, 1000);
-        var gravity = new b2Vec2(0, 300);
-        g_World = new b2World(worldAABB, gravity, true); 
+        var worldAABB = new Box2D.Collision.b2AABB();
+        worldAABB.lowerBound.Set(-1000, -1000);
+        worldAABB.upperBound.Set(1000, 1000);
+        var gravity = new Box2D.Common.Math.b2Vec2(0, 300);
+        g_World = new Box2D.Dynamics.b2World(worldAABB, gravity, true); 
         
         // Startup the application manager
         this.appManager = new AppManager().startUpAppManager();
