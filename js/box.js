@@ -34,7 +34,7 @@ function Box() {
     this.render = function( context ) {
         var c = this.body.GetWorldCenter();
         //console.log( "Box at (" + c.x + ", " + c.y + ")" );
-        context.fillRect( c.x, c.y, this.width, this.height );
+        context.fillRect( c.x - this.width/2, c.y - this.height/2, this.width, this.height );
     };
     
     //this.update = function( dt ) {

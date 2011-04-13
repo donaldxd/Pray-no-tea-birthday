@@ -32,11 +32,11 @@ function Ball() {
             return;
         
         //console.log( "Drawing at " + c.x + ", " + c.y );
-//         context.beginPath();
-//         context.arc( c.x, c.y, this.radius, 0, Math.PI * 2, false );
-//         context.closePath();
-//         context.strokeStyle = "#000";
-//         context.stroke();
+        context.beginPath();
+        context.arc( c.x, c.y, this.radius, 0, Math.PI * 2, false );
+        context.closePath();
+        context.strokeStyle = "#000";
+        context.stroke();
     };
     
     /*
