@@ -77,17 +77,17 @@ function GameManager() {
     
     this.keyDown = function( event ) {
         for( var i=0; i<this.gameObjects.length; i++ ) {
-            var object = this.gameObjects[i];
+            var obj = this.gameObjects[i];
             if( obj.keyDown )
-                obj.keyDown( event );
+                obj.keyDown( event.keyCode );
         }
     };
     
     this.keyUp = function( event ) {
         for( var i=0; i<this.gameObjects.length; i++ ) {
-            var object = this.gameObjects[i];
+            var obj = this.gameObjects[i];
             if( obj.keyDown )
-                obj.keyUp( event );
+                obj.keyUp( event.keyCode );
         }
     };
 }

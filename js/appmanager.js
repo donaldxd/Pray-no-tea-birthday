@@ -18,7 +18,8 @@ function AppManager() {
         new Box().startUpBox( [50, 0], 10, 600 );
         new Box().startUpBox( [600, 0], 10, 600 );
         
-        //this.player = new Player().startUpPlayer( 100, 100 );
+        this.player = new Player().startUpPlayer( 100, 100 );
+        
         // Add some ground
         
 //         var boxDef = new b2BoxDef();

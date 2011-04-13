@@ -1,10 +1,10 @@
-var gamejs = require("gamejs");
 
 function Player() {
     
     this.startUpPlayer = function( x, y ) {
         this.startUpGameObject( 0 );
-        this.radius = 30;
+        this.width = 30;
+        this.height = 30;
         
         // Physics
         var bodyDef = new b2BodyDef();
@@ -17,43 +17,28 @@ function Player() {
         
         var fixture = new b2FixtureDef();
         fixture.density = 1.0;
-        fixture.restitution = 0.4;
+        fixture.restitution = 0.25;
         fixture.friction = 0;
         
-        var shape = new b2PolygonShape();
-        shape.SetAsBox( 15, 15 );
-        fixture.shape = shape;
+        fixture.shape = new b2PolygonShape();
+        fixture.shape.SetAsBox( this.width/2, this.height/2 );
         
         this.body.CreateFixture( fixture );
         
         console.log( "Orig Pos: " + this.body.GetWorldCenter().x );
     };
-    
-    this.render = function(display) {
-//         if( !this.body.GetWorldCenter().x ) {
-//             console.log( center );
-//             this.body.SetPosition( new b2Vec2(100,100) );
-//             console.log( this.body.GetWorldCenter() );
-//         }
         
-        var center = new Array(2);
-        center[0] = this.body.GetWorldCenter().x;
-        center[1] = this.body.GetWorldCenter().y;
-        
-        gamejs.draw.circle(display, '#eeff00', center, this.radius, 0);
-    };
-    
     this.velocity = 200;
     
     this.keyDown = function( key ) {
         var vel = this.body.GetLinearVelocity();
-        if( key == gamejs.event.K_RIGHT ) {
+        if( key == KEY_RIGHT ) {
             vel.x = this.velocity;//= new b2Vec2( +this.velocity, 0 );
         }
-        else if( key == gamejs.event.K_LEFT ) {
+        else if( key == KEY_LEFT ) {
             vel.x = -this.velocity;//new b2Vec2( -this.velocity, 0 );
         }
-        else if( key == gamejs.event.K_UP ) {
+        else if( key == KEY_UP ) {
             vel.y = -this.velocity * 2;
             //this.body.ApplyImpulse(new b2Vec2(500.0, -3000.0), this.body.GetCenterPosition() );
         }
@@ -62,7 +47,7 @@ function Player() {
 //         if( vel.Length() > 100 ) {
 //             vel = vel.Normalize() * 100;
 //         }
-        this.body.SetLinearVelocity( vel );
+ //       this.body.SetLinearVelocity( vel );
     };
     
     
@@ -72,4 +57,4 @@ function Player() {
     };
 }
 
-Player.prototype = new GameObject();
+Player.prototype = new Box();

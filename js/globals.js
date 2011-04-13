@@ -18,6 +18,10 @@ var b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 var b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
 var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
 
+var KEY_RIGHT = 39;
+var KEY_LEFT  = 37;
+var KEY_UP    = 38;
+var KEY_DOWN  = 40;
 
 function getPlayer() {
     var body = g_World.GetBodyList();
