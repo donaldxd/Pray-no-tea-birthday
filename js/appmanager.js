@@ -5,11 +5,8 @@ function AppManager() {
         g_AppManager = this;
         
         // Create the world ( physics )
-        var worldAABB = new Box2D.Collision.b2AABB();
-        worldAABB.lowerBound.Set(-5000, -5000);
-        worldAABB.upperBound.Set(5000, 5000);
-        var gravity = new Box2D.Common.Math.b2Vec2(0, 0);
-        g_World = new Box2D.Dynamics.b2World(worldAABB, gravity, true); 
+        var gravity = new Box2D.Common.Math.b2Vec2(0, 10);
+        g_World = new Box2D.Dynamics.b2World( gravity, true); 
         
 //         g_World.SetFilter( new CollisionFilter() );
         
