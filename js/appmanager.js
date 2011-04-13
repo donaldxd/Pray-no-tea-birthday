@@ -21,8 +21,7 @@ function AppManager() {
         this.player = new Player().startUpPlayer( 100, 100 );
         
         // Camera
-        g_Camera = new Camera();
-        g_Camera.centerAt( this.player.body );
+        g_Camera = new Camera( this.player.body );
         
         // Add some ground
         

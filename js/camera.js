@@ -3,7 +3,9 @@
  * are looking at
  */
 
-function Camera() {
+function Camera( body ) {
+    
+    this.body = body;
     
     // Depend on the current level, should be adjusted accordingly
     this.MAX_WIDTH = 5000;
@@ -11,10 +13,6 @@ function Camera() {
     
     this.x = 0;
     this.y = 0;
-    
-    this.centerAt = function( body ) {
-        this.body = body;
-    };
     
     this.update = function( dt ) {
         var c = this.body.GetWorldCenter();
