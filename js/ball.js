@@ -1,42 +1,42 @@
 
-var gamejs = require("gamejs");
-
-// ball is a colored circle.
-// ball can circle through color list.
-// ball constantly pulsates in size.
-function Ball(center) {
-    this.center = center;
-    this.growPerSec = Ball.GROW_PER_SEC;
-    this.radius = 20;//this.growPerSec * 2;
-    this.color = 0;
+function Ball() {
+    this.radius = 20;
     
-    this.startUpBall = function() {
+    this.startUpBall = function( x, y ) {
         this.startUpGameObject( 0 );
         
         // Physics
-        var circleSd = new b2CircleDef();
-        circleSd.density = 1.0;
-        circleSd.radius = 20;
-        circleSd.restitution = 0.3;
-        circleSd.friction = 0;
+        var bodyDef = new b2BodyDef();
+        bodyDef.position.Set( x, y );
+        bodyDef.type = b2Body.b2_dynamicBody;
+        bodyDef.userData = this;
         
-        var circleBd = new b2BodyDef();
-        circleBd.AddShape(circleSd);
-        circleBd.position.Set( center[0], center[1] );
-        circleBd.userData = this;
-        this.body = g_World.CreateBody(circleBd);    
+        this.body = g_World.CreateBody(bodyDef);
+        
+        var fixture = new b2FixtureDef();
+        fixture.density = 1.0;
+        fixture.restitution = 0.4;
+        fixture.friction = 0.3;
+        fixture.shape = new b2CircleShape( this.radius );
+        
+        this.body.CreateFixture( fixture );
+        this.body.SetAwake( true );
+        
+        var c = this.body.GetWorldCenter();
+        console.log( "Ball at (" + c.x + ", " + c.y + ")" );
     };
     
-    this.render = function(display) {
-        //console.out("Render")
-        var rgbColor = Ball.COLORS[this.color];
-        var lineWidth = 0; // lineWidth zero fills the circle
+    this.render = function( context ) {
+        var c = this.body.GetWorldCenter();
+        if( c.x == NaN || c.y == NaN )
+            return;
         
-        var center = [10, 10];
-        center[0] = this.body.GetCenterPosition().x;
-        center[1] = this.body.GetCenterPosition().y;
-        
-        gamejs.draw.circle(display, rgbColor, center, this.radius, lineWidth);
+        //console.log( "Drawing at " + c.x + ", " + c.y );
+//         context.beginPath();
+//         context.arc( c.x, c.y, this.radius, 0, Math.PI * 2, false );
+//         context.closePath();
+//         context.strokeStyle = "#000";
+//         context.stroke();
     };
     
     /*

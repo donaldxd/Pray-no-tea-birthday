@@ -1,102 +1,93 @@
-var gamejs = require('gamejs');
-var BinaryHeap = require('gamejs/utils/binaryheap').BinaryHeap;
 
 function GameManager() {
     
-    this.gameObjects = new BinaryHeap( function(obj) { return obj.zOrder; } );
-    this.display = g_Display;
+    this.lastFrame = new Date().getTime();
+    this.gameObjects = new Array();
+    this.canvas = null;
+    this.context2D = null;
+    this.backBuffer = null;
+    this.backBufferContext2D = null;
     
     this.startUpGameManager = function() {
         g_GameManager = this;
         
-        // Create the world ( physics )
-        var worldAABB = new Box2D.Collision.b2AABB();
-        worldAABB.lowerBound.Set(-1000, -1000);
-        worldAABB.upperBound.Set(1000, 1000);
-        var gravity = new Box2D.Common.Math.b2Vec2(0, 300);
-        g_World = new Box2D.Dynamics.b2World(worldAABB, gravity, true); 
+        // Watch for Keyboard events
+        document.onkeydown = function( event ) { g_GameManager.keyDown( event ); };
+        document.onkeyUp = function( event ) { g_GameManager.keyUp( event ); };
+                
+        // Canvas and back buffer
+        this.canvas = document.getElementById('gc');
+        this.context2D = this.canvas.getContext('2d');
+        this.backBuffer = document.createElement('canvas');
+        this.backBuffer.width = this.canvas.width;
+        this.backBuffer.height = this.canvas.height;
+        this.backBufferContext2D = this.backBuffer.getContext('2d');
         
         // Startup the application manager
         this.appManager = new AppManager().startUpAppManager();
         
         // Call back
-        gamejs.time.fpsCallback( this.gameTick, this, 30 );
+        setInterval(function(){g_GameManager.gameTick();}, SECONDS_BETWEEN_FRAMES);
         
         return this;
     };
     
-    this.gameTick = function( dt ) {
-        if( dt >= 100 )
-            return;
+    this.gameTick = function() {
+        var thisFrame = new Date().getTime();
+        var dt = (thisFrame - this.lastFrame)/1000;
+        this.lastFrame = thisFrame;
         
-        dt /= 1000.0;
-        
-        //
-        // Handle Events
-        //
-        var events = gamejs.event.get();
-        for( var i=0; i<events.length; i++ ) {
-            var event = events[i];
-            if (event.type === gamejs.event.KEY_UP) {
-                var content = this.gameObjects.content;
-                content.forEach( 
-                    function(obj) {
-                        if( obj.keyUp )
-                            obj.keyUp( event.key );
-                    }
-                );
-            } else if (event.type == gamejs.event.KEY_DOWN) {
-                var content = this.gameObjects.content;
-                content.forEach( 
-                    function(obj) {
-                        if( obj.keyDown )
-                            obj.keyDown( event.key );
-                    }
-                );
-            }
-        }
-        
-        // Clear the canvas
-        this.display.clear();
-        
-        // Physics engine
-        g_World.Step( dt, 10 );
-        
+        // Clear the buffer
+        this.backBufferContext2D.clearRect(0, 0, this.backBuffer.width, this.backBuffer.height);
+                
         // Game Objects
-        for( var i=0; i<this.gameObjects.size(); i++ ) {
-            var object = this.gameObjects.content[i];
+        this.updateGameObjects( dt );
+        this.renderGameObjects( this.backBufferContext2D );
+        
+        this.appManager.update( dt );
+        
+        // Copy Back buffer
+        this.context2D.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.context2D.drawImage(this.backBuffer, 0, 0);
+    };
+    
+    this.updateGameObjects = function( dt ) {
+        for( var i=0; i<this.gameObjects.length; i++ ) {
+            var object = this.gameObjects[i];
             if( object.update)
                 object.update( dt );
         }
-        
-        for( var i=0; i<this.gameObjects.size(); i++ ) {
-            var object = this.gameObjects.content[i];
+    };
+    
+    this.renderGameObjects = function( context ) {
+        for( var i=0; i<this.gameObjects.length; i++ ) {
+            var object = this.gameObjects[i];
             if( object.render )
-                object.render( this.display );
+                object.render( context );
         }
     };
     
     this.addGameObject = function( object ) {
         this.gameObjects.push( object );
-    }
+    };
     
     this.removeGameObject = function( object ) {
-        this.gameObjects.remove( object );
-    }
+        this.gameObjects.removeObject( object );
+    };
     
     this.keyDown = function( event ) {
-        for( var i=0; i<this.gameObjects.size(); i++ ) {
-            var object = this.gameObjects.content[i];
+        for( var i=0; i<this.gameObjects.length; i++ ) {
+            var object = this.gameObjects[i];
             if( obj.keyDown )
                 obj.keyDown( event );
         }
-    }
+    };
     
     this.keyUp = function( event ) {
-        for( var i=0; i<this.gameObjects.size(); i++ ) {
-            var object = this.gameObjects.content[i];
+        for( var i=0; i<this.gameObjects.length; i++ ) {
+            var object = this.gameObjects[i];
             if( obj.keyDown )
                 obj.keyUp( event );
         }
-    }
+    };
 }

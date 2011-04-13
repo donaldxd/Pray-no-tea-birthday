@@ -4,13 +4,11 @@
  */
 function GameObject() {
     
-    this.body;
     this.zOrder = 0;
     
     this.startUpGameObject = function( zOrder ) {
-        this.zOrder = zOrder;
-        var gm = g_GameManager;
-        gm.addGameObject( this );
+        this.zOrder = zOrder ? zOrder : this.zOrder;
+        g_GameManager.addGameObject( this );
         return this;
     };
     

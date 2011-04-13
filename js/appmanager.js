@@ -4,26 +4,24 @@ function AppManager() {
     this.startUpAppManager = function() {
         g_AppManager = this;
         
-        g_World.SetFilter( new CollisionFilter() );
+        // Create the world ( physics )
+        var worldAABB = new Box2D.Collision.b2AABB();
+        worldAABB.lowerBound.Set(-5000, -5000);
+        worldAABB.upperBound.Set(5000, 5000);
+        var gravity = new Box2D.Common.Math.b2Vec2(0, 0);
+        g_World = new Box2D.Dynamics.b2World(worldAABB, gravity, true); 
         
-        this.ball = new Ball( [100,100] );
-        this.ball.startUpBall();
-        this.ball.nextColor();
-        this.ball.nextColor();
-        this.ball.nextColor();
+//         g_World.SetFilter( new CollisionFilter() );
         
-        var ball2 = new Ball( [500,120] );
-        ball2.startUpBall();
-        ball2.nextColor();
-        
-        var ball3 = new Ball( [510,30] );
-        ball3.startUpBall();
+//         new Ball().startUpBall( 100, 100 );
+//         new Ball().startUpBall( 500, 120 );
+//         new Ball().startUpBall( 510, 30 );
         
         new Box().startUpBox( [300,300], 500, 10 );
         new Box().startUpBox( [50, 0], 10, 600 );
         new Box().startUpBox( [600, 0], 10, 600 );
         
-        this.player = new Player().startUpPlayer( 100, 100 );
+        //this.player = new Player().startUpPlayer( 100, 100 );
         // Add some ground
         
 //         var boxDef = new b2BoxDef();
@@ -36,6 +34,25 @@ function AppManager() {
 //         
 //         var ground = g_World.CreateBody( groundBodyDef );
 //         console.log( ground );
+        return this;
+    };
+    
+    this.update = function( dt ) {
+        g_World.Step( 1/30, 6, 2 );
+        g_World.ClearForces();
+        
+        // Physics engine
+//         var player = getPlayer();
+//         player.SetPosition( new b2Vec2(100,100));
+//         console.log( player.GetWorldCenter().x );        
+//         
+//         var body = g_World.GetBodyList();
+//         while( body ) {
+//             if( body.GetUserData() instanceof Player ) {
+//                 console.log( "A: " + body.GetWorldCenter().x );
+//             }
+//             body = body.next;
+//         }
     };
 }
 

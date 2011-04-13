@@ -4,19 +4,6 @@
 
     <script src="js/box2d.js"></script>
 
-<!-- ========= game.js ===== -->
-    <script>
-      if (!window.console) {
-	window.console = {log: function() {}};
-      }
-      var $g = {};
-      $g.resourceBaseHref = './';
-      $g.ajaxBaseHref = './json/';
-    </script>
-    <script src="js/gjs/gjs-dev.js"></script>
-
-<!-- ======== game.js ====== -->
-
     <script src="js/globals.js"></script>
     <script src="js/gamemanager.js"></script>    
     <script src="js/gameobject.js"></script>
@@ -24,14 +11,14 @@
 <!--    <script src="js/collisionfilter.js"></script>-->
     <script src="js/ball.js"></script>
     <script src="js/box.js"></script>
-    <script src="js/player.js"></script>
+<!--     <script src="js/player.js"></script> -->
     <script src="js/main.js"></script>
     
 </head>
 <body>
   <center>
   <h1> The Game </h1> 
-  <canvas id="jsgamecanvas">
+  <canvas id="gc" width=800 height=500>
     Your browser does not support HTML 5 Canvas API
   </canvas>
   </center>

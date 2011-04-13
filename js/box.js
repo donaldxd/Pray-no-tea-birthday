@@ -1,5 +1,6 @@
-var gamejs = require("gamejs");
-
+/**
+ * A Simple static box class
+ */
 function Box() {
     
     this.startUpBox = function( center, w, h ) {
@@ -8,25 +9,32 @@ function Box() {
         this.height = h;
         
         // Physics
-        var shapeDef = new b2BoxDef();
-        shapeDef.restitution = 0.95;
-        shapeDef.extents.Set( w/2, h/2 );
-        
         var bodyDef = new b2BodyDef();
-        bodyDef.AddShape( shapeDef );
         bodyDef.position.Set( center[0], center[1] );
+        bodyDef.type = b2Body.b2_dynamicBody; 
         bodyDef.userData = this;
-        this.body = g_World.CreateBody( bodyDef );    
+        
+        this.body = g_World.CreateBody(bodyDef);
+        
+        var fixture = new b2FixtureDef();
+        fixture.density = 1.0;
+        fixture.restitution = 0.4;
+        fixture.friction = 0;
+        
+        var shape = new b2PolygonShape();
+        shape.SetAsBox( w/2, h/2 );
+        fixture.shape = shape;
+        
+        this.body.CreateFixture( fixture );
+        
+        var c = this.body.GetWorldCenter();
+        console.log( "Box created at (" + c.x + ", " + c.y + ")" );
     };
     
-    this.render = function(display) {
-        var center = this.body.GetCenterPosition();
-        var c = new Array();
-        c[0] = center.x;
-        c[1] = center.y;
-        
-        rect = new gamejs.Rect( c[0] - this.width/2.0, c[1] - this.height/2.0, this.width, this.height );
-        gamejs.draw.rect(display, '#0000cc', rect, 0);
+    this.render = function( context ) {
+        var c = this.body.GetWorldCenter();
+        //console.log( "Box at (" + c.x + ", " + c.y + ")" );
+        context.fillRect( c.x, c.y, this.width, this.height );
     };
     
     //this.update = function( dt ) {
