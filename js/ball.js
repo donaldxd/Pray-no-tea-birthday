@@ -7,7 +7,7 @@ function Ball() {
         
         // Physics
         var bodyDef = new b2BodyDef();
-        bodyDef.position.Set( x, y );
+        bodyDef.position.Set( x/PPM, y/PPM );
         bodyDef.type = b2Body.b2_dynamicBody;
         bodyDef.userData = this;
         
@@ -17,14 +17,14 @@ function Ball() {
         fixture.density = 1.0;
         fixture.restitution = 0.4;
         fixture.friction = 0.3;
-        fixture.shape = new b2CircleShape( this.radius );
+        fixture.shape = new b2CircleShape( this.radius/PPM );
         
         this.body.CreateFixture( fixture );
     };
     
     this.render = function( context ) {
-        var c = this.body.GetWorldCenter();
-
+        var c = p2g( this.body.GetWorldCenter() );
+        
         context.beginPath();
         context.arc( c.x, c.y, this.radius, 0, Math.PI * 2, false );
         context.closePath();

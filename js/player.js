@@ -1,6 +1,9 @@
 
 function Player() {
     
+    this.velocity = 1;
+    this.jumpForce = new b2Vec2( 0, -0.3 );
+    
     this.startUpPlayer = function( x, y ) {
         this.startUpGameObject( 0 );
         this.width = 30;
@@ -8,7 +11,7 @@ function Player() {
         
         // Physics
         var bodyDef = new b2BodyDef();
-        bodyDef.position.Set( x, y );
+        bodyDef.position.Set( x/PPM, y/PPM );
         bodyDef.type = b2Body.b2_dynamicBody; 
         bodyDef.userData = this;
         bodyDef.allowSleep = false;
@@ -21,25 +24,21 @@ function Player() {
         fixture.friction = 0;
         
         fixture.shape = new b2PolygonShape();
-        fixture.shape.SetAsBox( this.width/2, this.height/2 );
+        fixture.shape.SetAsBox( this.width/PPM * 0.5, this.height/PPM * 0.5 );
         
         this.body.CreateFixture( fixture );
     };
         
-    this.velocity = 200;
-    
     this.keyDown = function( key ) {
         var vel = this.body.GetLinearVelocity();
         if( key == KEY_RIGHT ) {
-            vel.x = this.velocity;//= new b2Vec2( +this.velocity, 0 );
+            vel.x = this.velocity;
         }
         else if( key == KEY_LEFT ) {
-            vel.x = -this.velocity;//new b2Vec2( -this.velocity, 0 );
+            vel.x = -this.velocity;
         }
         else if( key == KEY_UP ) {
-            var point = this.body.GetWorldCenter();
-            var force = new b2Vec2(0.0, -100000.0);
-            this.body.ApplyImpulse( force, point );
+            this.body.ApplyImpulse( this.jumpForce, this.body.GetWorldCenter() );
         }
     };
     

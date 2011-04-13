@@ -18,11 +18,36 @@ var b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 var b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
 var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
 
+//
+// Conversion Units
+//
+var PIXELS_PER_METER = 75;
+var PPM = PIXELS_PER_METER;
+
+// Physics to Graphics units
+function p2g( vec ) {
+    if( vec instanceof b2Vec2 ) {
+        var v = new b2Vec2();
+        v.x = vec.x * PPM;
+        v.y = vec.y * PPM;
+        return v;
+    }
+    
+    vec *= PPM;
+    return vec;
+}
+
+//
+// Key Codes
+//
 var KEY_RIGHT = 39;
 var KEY_LEFT  = 37;
 var KEY_UP    = 38;
 var KEY_DOWN  = 40;
 
+//
+// Misc function
+//
 function getPlayer() {
     var body = g_World.GetBodyList();
     while( body ) {
