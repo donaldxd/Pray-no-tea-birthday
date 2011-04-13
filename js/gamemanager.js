@@ -13,7 +13,7 @@ function GameManager() {
         
         // Watch for Keyboard events
         document.onkeydown = function( event ) { g_GameManager.keyDown( event ); };
-        document.onkeyUp = function( event ) { g_GameManager.keyUp( event ); };
+        document.onkeyup = function( event ) { g_GameManager.keyUp( event ); };
                 
         // Canvas and back buffer
         this.canvas = document.getElementById('gc');
@@ -86,7 +86,7 @@ function GameManager() {
     this.keyUp = function( event ) {
         for( var i=0; i<this.gameObjects.length; i++ ) {
             var obj = this.gameObjects[i];
-            if( obj.keyDown )
+            if( obj.keyUp )
                 obj.keyUp( event.keyCode );
         }
     };

@@ -29,17 +29,42 @@ function Player() {
         this.body.CreateFixture( fixture );
         return this;
     };
-        
-    this.keyDown = function( key ) {
+    
+    this.update = function( dt ) {
         var vel = this.body.GetLinearVelocity();
-        if( key == KEY_RIGHT ) {
+        if( this.right ) {
             vel.x = this.velocity;
         }
-        else if( key == KEY_LEFT ) {
+        else if( this.left ) {
             vel.x = -this.velocity;
         }
-        else if( key == KEY_UP && this.canJump() ) {
+        else if( this.up && this.canJump() ) {
             this.body.ApplyImpulse( this.jumpForce, this.body.GetWorldCenter() );
+            this.bCanJump = false;
+        }
+    }
+    
+    this.keyDown = function( key ) {
+        if( key == KEY_RIGHT ) {
+            this.right = true;
+        }
+        else if( key == KEY_LEFT ) {
+            this.left = true;
+        }
+        else if( key == KEY_UP ) {
+            this.up = true;
+        }
+    };
+    
+    this.keyUp = function( key ) {
+        if( key == KEY_RIGHT ) {
+            this.right = false;
+        }
+        else if( key == KEY_LEFT ) {
+            this.left = false;
+        }
+        else if( key == KEY_UP ) {
+            this.up = false;
         }
     };
     
