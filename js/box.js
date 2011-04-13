@@ -11,7 +11,7 @@ function Box() {
         // Physics
         var bodyDef = new b2BodyDef();
         bodyDef.position.Set( center[0], center[1] );
-        bodyDef.type = b2Body.b2_dynamicBody; 
+        bodyDef.type = b2Body.b2_staticBody; 
         bodyDef.userData = this;
         
         this.body = g_World.CreateBody(bodyDef);
