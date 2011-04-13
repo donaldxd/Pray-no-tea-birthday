@@ -24,8 +24,6 @@ function Player() {
         fixture.shape.SetAsBox( this.width/2, this.height/2 );
         
         this.body.CreateFixture( fixture );
-        
-        console.log( "Orig Pos: " + this.body.GetWorldCenter().x );
     };
         
     this.velocity = 200;
@@ -39,20 +37,11 @@ function Player() {
             vel.x = -this.velocity;//new b2Vec2( -this.velocity, 0 );
         }
         else if( key == KEY_UP ) {
-//             vel.y = -this.velocity * 2;
             var point = this.body.GetWorldCenter();
-            //console.log( point.x + ", " + point.y );
             var force = new b2Vec2(0.0, -100000.0);
             this.body.ApplyImpulse( force, point );
         }
-        
-        // Upper limit
-//         if( vel.Length() > 100 ) {
-//             vel = vel.Normalize() * 100;
-//         }
- //       this.body.SetLinearVelocity( vel );
     };
-    
     
     this.shouldCollide = function( obj ) {
         if( obj instanceof Box )

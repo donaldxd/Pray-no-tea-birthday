@@ -14,9 +14,9 @@ function AppManager() {
         new Ball().startUpBall( 500, 120 );
         new Ball().startUpBall( 510, 30 );
         
-        new Box().startUpBox( [300,300], 600, 10 );
-        new Box().startUpBox( [50, 0], 10, 600 );
-        new Box().startUpBox( [600, 0], 10, 600 );
+        new Box().startUpBox( 300, 300, 600, 10 );
+        new Box().startUpBox( 50, 0, 10, 600 );
+        new Box().startUpBox( 600, 0, 10, 600 );
         
         this.player = new Player().startUpPlayer( 100, 100 );
         
