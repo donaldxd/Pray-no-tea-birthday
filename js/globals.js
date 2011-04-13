@@ -2,9 +2,13 @@
 // Global Variables ( there are going to be loads )
 //
 
+var SCREEN_WIDTH  = 800;
+var SCREEN_HEIGHT = 500;
+
 var g_World;
 var g_GameManager;
 var g_AppManager;
+var g_Camera;
 
 var b2AABB = Box2D.Collision.b2AABB;
 var b2Vec2 = Box2D.Common.Math.b2Vec2;
@@ -25,17 +29,18 @@ var PIXELS_PER_METER = 75;
 var PPM = PIXELS_PER_METER;
 
 // Physics to Graphics units
-function p2g( vec ) {
-    if( vec instanceof b2Vec2 ) {
-        var v = new b2Vec2();
-        v.x = vec.x * PPM;
-        v.y = vec.y * PPM;
-        return v;
-    }
-    
-    vec *= PPM;
-    return vec;
+function p2g( x ) {
+    return x * PPM;
 }
+
+// Physics to Camera units
+function p2cX( x ) {
+    return g2cX( p2g(x) );
+}
+function p2cY( y ) {
+    return g2cY( p2g(y) );
+}
+
 
 //
 // Key Codes

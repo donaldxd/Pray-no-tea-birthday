@@ -28,9 +28,13 @@ function Box() {
     };
     
     this.render = function( context ) {
-        var c = p2g( this.body.GetWorldCenter() );
-        var x = c.x - this.width/2;
-        var y = c.y - this.height/2;
+        var c = this.body.GetWorldCenter();
+        var x = p2cX(c.x) - this.width/2;
+        var y = p2cY(c.y) - this.height/2;
+        
+        //console.log( x + ", " + y );
+        //if( x < 0 || y < 0 )
+        //    return;
         
         context.fillRect( x, y, this.width, this.height );
     };

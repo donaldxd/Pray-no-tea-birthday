@@ -20,6 +20,10 @@ function AppManager() {
         
         this.player = new Player().startUpPlayer( 100, 100 );
         
+        // Camera
+        g_Camera = new Camera();
+        g_Camera.centerAt( this.player.body );
+        
         // Add some ground
         
 //         var boxDef = new b2BoxDef();
@@ -39,18 +43,7 @@ function AppManager() {
         g_World.Step( 1/30, 6, 2 );
         g_World.ClearForces();
         
-        // Physics engine
-//         var player = getPlayer();
-//         player.SetPosition( new b2Vec2(100,100));
-//         console.log( player.GetWorldCenter().x );        
-//         
-//         var body = g_World.GetBodyList();
-//         while( body ) {
-//             if( body.GetUserData() instanceof Player ) {
-//                 console.log( "A: " + body.GetWorldCenter().x );
-//             }
-//             body = body.next;
-//         }
+        g_Camera.update( dt );
     };
 }
 
