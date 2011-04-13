@@ -24,6 +24,7 @@ function Box() {
         fixture.shape.SetAsBox( w/PPM * 0.5, h/PPM * 0.5 );
         
         this.body.CreateFixture( fixture );
+        return this;
     };
     
     this.render = function( context ) {

@@ -27,6 +27,7 @@ function Player() {
         fixture.shape.SetAsBox( this.width/PPM * 0.5, this.height/PPM * 0.5 );
         
         this.body.CreateFixture( fixture );
+        return this;
     };
         
     this.keyDown = function( key ) {

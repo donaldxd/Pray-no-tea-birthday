@@ -20,6 +20,7 @@ function Ball() {
         fixture.shape = new b2CircleShape( this.radius/PPM );
         
         this.body.CreateFixture( fixture );
+        return this;
     };
     
     this.render = function( context ) {
