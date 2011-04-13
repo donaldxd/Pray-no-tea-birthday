@@ -45,7 +45,25 @@ function Player() {
     
     this.canJump = function() {
         return this.bCanJump;
-        //    return true;
+            //return true;
+        
+//         var edge = this.body.GetContactList();
+//         while( edge ) {
+//             var contact = edge.contact;
+//             console.log( contact );
+//             var obj1 = contact.GetFixtureA().GetBody().GetUserData();
+//             var obj2 = contact.GetFixtureB().GetBody().GetUserData();
+//             
+//             if( obj1 instanceof Player && obj2 instanceof Box )
+//                 return true;
+//             if( obj2 instanceof Player && obj1 instanceof Box )
+//                 return true;
+//             
+//             edge = edge.next;
+//         }
+//         
+//         return false;
+        
         /*
         var pos = this.body.GetPosition();
         var halfHeight = ( this.height / PPM ) * 0.5;
