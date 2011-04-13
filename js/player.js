@@ -44,6 +44,9 @@ function Player() {
     };
     
     this.canJump = function() {
+        return this.bCanJump;
+        //    return true;
+        /*
         var pos = this.body.GetPosition();
         var halfHeight = ( this.height / PPM ) * 0.5;
         var from = b2Vec2.Make( pos.x, pos.y + halfHeight + 0.01 );
@@ -51,7 +54,7 @@ function Player() {
         
         var vector = g_World.RayCastAll(from, to);
         console.log( vector );
-        return vector.length == 1;
+        return vector.length == 1;*/
     }
     
     this.shouldCollide = function( obj ) {

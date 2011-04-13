@@ -7,8 +7,7 @@ function AppManager() {
         // Create the world ( physics )
         var gravity = new Box2D.Common.Math.b2Vec2(0, 1);
         g_World = new Box2D.Dynamics.b2World( gravity, true); 
-        
-//         g_World.SetFilter( new CollisionFilter() );
+        g_World.SetContactListener( new ContactListener() );
         
         new Ball().startUpBall( 100, 100 );
         new Ball().startUpBall( 500, 120 );
