@@ -7,7 +7,7 @@
 function Level1() {
     
     this.startUpLevel1 = function( gs ) {
-        this.length = 1000; // Length of the level in pixels
+        this.width = 1000; // Length of the level in pixels
         this.startPos.Set( 100, 100 );
         this.endPos.Set( 800, 400 );
         
@@ -27,10 +27,6 @@ function Level1() {
                 
         return this;
     };
-    
-    this.nextLevel = function( gs ) {        
-        return new Level2().startUpLevel2( gs );
-    }
     
     this.update = function( dt ) {
         this.updateEverything( dt );
