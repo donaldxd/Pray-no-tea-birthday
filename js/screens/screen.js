@@ -7,4 +7,8 @@ function Screen() {
     this.startUpScreen = function() {
         return;
     }
+    
+    this.stopUpdate = function() {
+        this.update = function(){};
+    }
 }

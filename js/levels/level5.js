@@ -25,7 +25,7 @@ function Level5() {
         
         if( this.done ) {
             // New screen!
-            g_GameManager.topScreen().update = function() {}
+            this.gameScreen.stopUpdate();
             g_GameManager.pushScreen( new EndingScreen().startUpEndingScreen() );
         }
     }
