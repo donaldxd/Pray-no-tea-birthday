@@ -29,6 +29,13 @@ function Level1() {
     this.nextLevel = function( gs ) {        
         return new Level2().startUpLevel2( gs );
     }
+    
+    this.update = function( dt ) {
+        if( this.done ) {
+            g_GameManager.clearGameObjects();
+            this.gameScreen.changeLevel( new Level2().startUpLevel2() );
+        }
+    }
 }
 
 Level1.prototype = new Level();

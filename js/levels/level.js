@@ -21,7 +21,6 @@ function Level() {
     this.endPos = new b2Vec2();
     
     this.startUpLevel = function( gs ) {
-        this.startUpScreen();
         this.gameScreen = gs;
         
         // Create the world ( physics )
@@ -37,7 +36,7 @@ function Level() {
         g_Camera.MAX_WIDTH = this.width;
         
         // End position
-        this.levelChanger = new LevelChanger().startUpLevelChanger( gs, this.endPos.x, this.endPos.y );
+        this.levelChanger = new LevelChanger().startUpLevelChanger( this, this.endPos.x, this.endPos.y );
         this.levelChanger.getNextLevel = this.nextLevel;
     };
     
@@ -51,10 +50,6 @@ function Level() {
         new Box().startUpBox( 0, h/2, 6, h );  // left barrier
         new Box().startUpBox( w, h/2, 6, h );  // right barrier
     }
-    
-    this.nextLevel = function() {
-        
-    }
 }
 
-Level.prototype = new Screen();
+//Level.prototype = new Screen();

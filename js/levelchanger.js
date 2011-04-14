@@ -7,8 +7,8 @@ function LevelChanger() {
     // A function that returns the next level
     this.getNextLevel = null;
     
-    this.startUpLevelChanger = function( gs, x, y) {
-        this.gameScreen = gs;
+    this.startUpLevelChanger = function( level, x, y) {
+        this.level = level;
         this.startUpGameObject( 0 );
         
         // Physics
@@ -29,11 +29,8 @@ function LevelChanger() {
     
     this.update = function( dt ) {
         if( this.die ) {
-            console.log("Clearing all game objects");
-            //g_GameManager.clearGameObjects();
-            var newLevel = this.getNextLevel( this.gameScreen );
-            console.log( newLevel );
-            this.gameScreen.changeLevel( newLevel );
+            this.level.done = true;
+            this.shutDownGameObject();
         }
     }
     
