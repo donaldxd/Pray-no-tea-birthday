@@ -7,7 +7,7 @@ var SCREEN_HEIGHT = 500;
 
 var g_World;
 var g_GameManager;
-var g_AppManager;
+var g_GameObjectManager;
 var g_Camera;
 
 var b2AABB = Box2D.Collision.b2AABB;

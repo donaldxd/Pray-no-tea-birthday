@@ -2,7 +2,6 @@
 function GameManager() {
     
     this.lastFrame = new Date().getTime();
-    this.gameObjects = new Array();
     this.screens = new Array();
     
     this.canvas = null;
@@ -51,49 +50,11 @@ function GameManager() {
         this.context2D.drawImage(this.backBuffer, 0, 0);
     };
     
-    this.updateGameObjects = function( dt ) {
-        for( var i=0; i<this.gameObjects.length; i++ ) {
-            var object = this.gameObjects[i];
-            if( object.update)
-                object.update( dt );
-        }
-    };
-    
-    this.renderGameObjects = function( context ) {
-        for( var i=0; i<this.gameObjects.length; i++ ) {
-            var object = this.gameObjects[i];
-            if( object.render )
-                object.render( context );
-        }
-    };
-    
-    this.addGameObject = function( object ) {
-        this.gameObjects.push( object );
-        this.gameObjects.sort(function(a,b){return a.zOrder - b.zOrder;})
-    };
-    
-    this.removeGameObject = function( object ) {
-        var index = this.gameObjects.indexOf( object );
-        if( index != -1 ) {
-            this.gameObjects.splice( index, 1 );
-        }
-    };
-    
-    this.clearGameObjects = function() {
-        this.gameObjects = new Array();
-    }
-    
     this.keyDown = function( event ) {
         for( var i=0; i<this.screens.length; i++ ) {
             var screen = this.screens[i];
             if( screen.keyDown )
                 screen.keyDown( event.keyCode );
-        }
-        
-        for( var i=0; i<this.gameObjects.length; i++ ) {
-            var obj = this.gameObjects[i];
-            if( obj.keyDown )
-                obj.keyDown( event.keyCode );
         }
     };
     
@@ -102,12 +63,6 @@ function GameManager() {
             var screen = this.screens[i];
             if( screen.keyUp )
                 screen.keyUp( event.keyCode );
-        }
-        
-        for( var i=0; i<this.gameObjects.length; i++ ) {
-            var obj = this.gameObjects[i];
-            if( obj.keyUp )
-                obj.keyUp( event.keyCode );
         }
     };
     

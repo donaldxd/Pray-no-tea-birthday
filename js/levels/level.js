@@ -28,6 +28,9 @@ function Level() {
         g_World = new Box2D.Dynamics.b2World( gravity, true); 
         g_World.SetContactListener( new ContactListener() );
         
+        // GameObjects
+        new GameObjectManager().startUpGameObjectManager();
+        
         // Player
         this.player = new Player().startUpPlayer( this.startPos.x, this.startPos.y );
         

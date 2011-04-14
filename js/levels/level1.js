@@ -32,7 +32,7 @@ function Level1() {
     
     this.update = function( dt ) {
         if( this.done ) {
-            g_GameManager.clearGameObjects();
+            g_GameObjectManager.clearGameObjects();
             this.gameScreen.changeLevel( new Level2().startUpLevel2() );
         }
     }

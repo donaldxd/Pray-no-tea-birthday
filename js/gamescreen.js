@@ -11,8 +11,6 @@ function GameScreen() {
         this.currentLevel = new Level1().startUpLevel1( this );
         g_GameManager.pushScreen( this.currentLevel );
         
-        //g_GameManager.clearGameObjects();
-        //this.changeLevel( new Level2().startUpLevel2( this ) );
         return this;
     };
     
@@ -23,19 +21,26 @@ function GameScreen() {
         g_Camera.update( dt );
         
         // Game Objects
-        g_GameManager.updateGameObjects( dt );
+        g_GameObjectManager.update( dt );
         
         if( this.currentLevel.update )
             this.currentLevel.update( dt );
     };
     
     this.render = function( context ) {
-        g_GameManager.renderGameObjects( context );
+        g_GameObjectManager.render( context );
     };
     
     this.changeLevel = function( level ) {
         this.currentLevel = level;
     };
+    
+    this.keyDown = function( key ) {
+        g_GameObjectManager.keyDown( key );
+    }
+    this.keyUp = function( key ) {
+        g_GameObjectManager.keyUp( key );
+    }
 };
 
 GameScreen.prototype = new Screen();

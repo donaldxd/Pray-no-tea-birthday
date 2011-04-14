@@ -9,12 +9,12 @@ function GameObject() {
     
     this.startUpGameObject = function( zOrder ) {
         this.zOrder = zOrder ? zOrder : this.zOrder;
-        g_GameManager.addGameObject( this );
+        g_GameObjectManager.addGameObject( this );
         return this;
     };
     
     this.shutDownGameObject = function() {
-        g_GameManager.removeGameObject( this );
+        g_GameObjectManager.removeGameObject( this );
         if( this.body )
             g_World.DestroyBody( this.body );
     }
