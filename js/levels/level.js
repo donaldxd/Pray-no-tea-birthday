@@ -58,15 +58,17 @@ function Level() {
     }
     
     this.updateEverything = function( dt ) {
-        // Physics
-        g_World.Step( 1/30, 6, 2 );
-        g_World.ClearForces();
-        
         // Camera
         g_Camera.update( dt );
         
         // Game Objects
         g_GameObjectManager.update( dt );
+        
+        // Physics
+        // Do it in the end cause certain call-backs may cause the execution of this screen
+        // to stop. In that case we do not want to update the camera or objects
+        g_World.Step( 1/30, 6, 2 );
+        g_World.ClearForces();
     }
     
     this.killPlayer = function() {
