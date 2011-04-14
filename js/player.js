@@ -68,6 +68,10 @@ function Player() {
         }
     };
     
+    this.setPosition = function( x, y ) {
+        this.body.SetPosition( new b2Vec2(g2p(x), g2p(y)) );
+    }
+    
     this.canJump = function() {
         return this.bCanJump;
             //return true;

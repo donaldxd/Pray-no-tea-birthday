@@ -6,10 +6,10 @@
 
 function Level1() {
     
-    this.startUpLevel1 = function() {
+    this.startUpLevel1 = function( gs ) {
         this.length = 1000; // Length of the level in pixels
         
-        this.startUpLevel();
+        this.startUpLevel( gs );
         
         new Ball().startUpBall( 100, 100 );
         new Ball().startUpBall( 500, 120 );

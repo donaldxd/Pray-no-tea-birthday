@@ -16,10 +16,14 @@ function Level() {
     this.height = SCREEN_HEIGHT;
     this.groundClearance = 5;
     
+    // Start Position
+    this.startPos = new b2Vec2( 100, 100 );
+    
     this.startUpLevel = function( gs ) {
         this.startUpScreen();
         this.gameScreen = gs;        
-        
+        this.gameScreen.player.setPosition( this.startPos.x, this.startPos.y );
+       
         g_Camera.MAX_WIDTH = this.width;
     };
     

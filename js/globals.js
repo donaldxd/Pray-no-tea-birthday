@@ -32,6 +32,9 @@ var PPM = PIXELS_PER_METER;
 function p2g( x ) {
     return x * PPM;
 }
+function g2p( x ) {
+    return x / PPM;
+}
 
 // Physics to Camera units
 function p2cX( x ) {

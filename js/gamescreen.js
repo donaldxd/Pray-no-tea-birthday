@@ -19,7 +19,9 @@ function GameScreen() {
         // Camera
         g_Camera = new Camera( this.player.body );
         
-        g_GameManager.pushScreen( new Level2().startUpLevel2() );
+        var level = new Level1();
+        level.startPos.Set( 500, 100 );
+        g_GameManager.pushScreen( level.startUpLevel1( this ) );
         
         return this;
     };
