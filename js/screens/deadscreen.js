@@ -7,6 +7,8 @@
 function DeadScreen() {
     
     this.startUpDeadScreen = function() {
+        g_GameManager.topScreen().stopUpdate();
+        
         this.startUpScreen();
         this.startTime = new Date();
         return this;
@@ -22,6 +24,7 @@ function DeadScreen() {
         var elapsed = endTime - this.startTime;
         if( elapsed > 1000 ) {
             g_GameManager.popScreen();
+            g_GameManager.topScreen().startUpdate();
         }
     }
 }
