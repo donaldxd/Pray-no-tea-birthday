@@ -22,14 +22,23 @@ function Level() {
     
     this.startUpLevel = function( gs ) {
         this.startUpScreen();
-        this.gameScreen = gs;        
-        this.gameScreen.player.setPosition( this.startPos.x, this.startPos.y );
-       
+        this.gameScreen = gs;
+        
+        // Create the world ( physics )
+        var gravity = new Box2D.Common.Math.b2Vec2(0, 1);
+        g_World = new Box2D.Dynamics.b2World( gravity, true); 
+        g_World.SetContactListener( new ContactListener() );
+        
+        // Player
+        this.player = new Player().startUpPlayer( this.startPos.x, this.startPos.y );
+        
+        // Camera
+        g_Camera = new Camera( this.player.body );
+        g_Camera.MAX_WIDTH = this.width;
+        
         // End position
         this.levelChanger = new LevelChanger().startUpLevelChanger( gs, this.endPos.x, this.endPos.y );
         this.levelChanger.getNextLevel = this.nextLevel;
-        
-        g_Camera.MAX_WIDTH = this.width;
     };
     
     this.createBoundingBox = function() {
