@@ -7,8 +7,9 @@ function Level2() {
     
     this.startUpLevel2 = function( gs ) {
         console.log("Level2");
-        this.length = 1000; // Length of the level in pixels
+        this.length = 1200; // Length of the level in pixels
         
+        this.endPos.Set( 1000, 200 );
         this.startUpLevel( gs );
         
         for( var i=0; i<20; i++ ) {
@@ -33,6 +34,17 @@ function Level2() {
         
         return this;
     };
+    
+    this.update = function( dt ) {
+        this.updateEverything();
+        
+        if( this.done ) {
+            g_GameObjectManager.clearGameObjects();
+            
+            var level1 = new Level1().startUpLevel1( this.gameScreen );
+            this.gameScreen.changeLevel( level1 );
+        }
+    }
     
 }
 

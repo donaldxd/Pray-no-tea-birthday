@@ -9,22 +9,14 @@ function GameScreen() {
         this.startUpScreen();
         
         this.currentLevel = new Level1().startUpLevel1( this );
-        g_GameManager.pushScreen( this.currentLevel );
-        
         return this;
     };
     
     this.update = function( dt ) {
-        g_World.Step( 1/30, 6, 2 );
-        g_World.ClearForces();
-        
-        g_Camera.update( dt );
-        
-        // Game Objects
-        g_GameObjectManager.update( dt );
-        
-        if( this.currentLevel.update )
+        if( this.currentLevel.update ) {
+            console.log( this.currentLevel );
             this.currentLevel.update( dt );
+        }
     };
     
     this.render = function( context ) {

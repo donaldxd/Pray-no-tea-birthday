@@ -31,9 +31,16 @@ function Level1() {
     }
     
     this.update = function( dt ) {
+        if( this.gameScreen.currentLevel != this ) {
+            console.log("WTF!");
+        }
+        
+        this.updateEverything( dt );
         if( this.done ) {
             g_GameObjectManager.clearGameObjects();
-            this.gameScreen.changeLevel( new Level2().startUpLevel2() );
+            
+            var level2 = new Level2().startUpLevel2( this.gameScreen );
+            this.gameScreen.changeLevel( level2 );
         }
     }
 }

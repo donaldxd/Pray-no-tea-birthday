@@ -53,6 +53,16 @@ function Level() {
         new Box().startUpBox( 0, h/2, 6, h );  // left barrier
         new Box().startUpBox( w, h/2, 6, h );  // right barrier
     }
+    
+    this.updateEverything = function( dt ) {
+        // Physics
+        g_World.Step( 1/30, 6, 2 );
+        g_World.ClearForces();
+        
+        // Camera
+        g_Camera.update( dt );
+        
+        // Game Objects
+        g_GameObjectManager.update( dt );
+    }
 }
-
-//Level.prototype = new Screen();
