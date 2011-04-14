@@ -79,6 +79,10 @@ function GameManager() {
         }
     };
     
+    this.clearGameObjects = function() {
+        this.gameObjects = new Array();
+    }
+    
     this.keyDown = function( event ) {
         for( var i=0; i<this.screens.length; i++ ) {
             var screen = this.screens[i];

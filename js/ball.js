@@ -32,7 +32,7 @@ function Ball() {
         context.beginPath();
         context.arc( x, y, this.radius, 0, Math.PI * 2, false );
         context.closePath();
-        context.strokeStyle = "#000";
+        //context.strokeStyle = "#000";
         //context.fillStyle = this.fillColor;
         context.stroke();
         

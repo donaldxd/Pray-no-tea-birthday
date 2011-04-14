@@ -20,9 +20,10 @@ function GameScreen() {
         g_Camera = new Camera( this.player.body );
         
         var level = new Level1();
-        level.startPos.Set( 500, 100 );
         g_GameManager.pushScreen( level.startUpLevel1( this ) );
         
+        //g_GameManager.clearGameObjects();
+        //this.changeLevel( new Level2().startUpLevel2( this ) );
         return this;
     };
     
@@ -38,7 +39,13 @@ function GameScreen() {
     
     this.render = function( context ) {
         g_GameManager.renderGameObjects( context );
-    }
+    };
+    
+    this.changeLevel = function( level ) {
+        g_GameManager.popScreen();
+        g_GameManager.addGameObject( this.player );
+        g_GameManager.pushScreen( level );
+    };
 };
 
 GameScreen.prototype = new Screen();

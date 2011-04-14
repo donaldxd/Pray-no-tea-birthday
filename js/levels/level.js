@@ -18,12 +18,17 @@ function Level() {
     
     // Start Position
     this.startPos = new b2Vec2( 100, 100 );
+    this.endPos = new b2Vec2();
     
     this.startUpLevel = function( gs ) {
         this.startUpScreen();
         this.gameScreen = gs;        
         this.gameScreen.player.setPosition( this.startPos.x, this.startPos.y );
        
+        // End position
+        this.levelChanger = new LevelChanger().startUpLevelChanger( gs, this.endPos.x, this.endPos.y );
+        this.levelChanger.getNextLevel = this.nextLevel;
+        
         g_Camera.MAX_WIDTH = this.width;
     };
     
@@ -36,6 +41,10 @@ function Level() {
         new Box().startUpBox( (w+buffer)/2, 0,   w+buffer, 10 ); // top
         new Box().startUpBox( 0, h/2, 6, h );  // left barrier
         new Box().startUpBox( w, h/2, 6, h );  // right barrier
+    }
+    
+    this.nextLevel = function() {
+        
     }
 }
 
