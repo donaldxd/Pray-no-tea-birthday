@@ -11,7 +11,8 @@ function Player() {
         
         // Physics
         var bodyDef = new b2BodyDef();
-        bodyDef.position.Set( x/PPM, y/PPM );
+        this.startPos = new b2Vec2( g2p(x), g2p(y) );
+        bodyDef.position.Set( g2p(x), g2p(y) );
         bodyDef.type = b2Body.b2_dynamicBody; 
         bodyDef.userData = this;
         bodyDef.allowSleep = false;

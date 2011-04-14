@@ -72,6 +72,5 @@ function Level() {
      
         // Kill the player
         this.player.die = true;
-        this.player.startPos = g2pVec( this.startPos );
     }
 }
