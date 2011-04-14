@@ -69,10 +69,14 @@ function GameManager() {
     
     this.addGameObject = function( object ) {
         this.gameObjects.push( object );
+        this.gameObjects.sort(function(a,b){return a.zOrder - b.zOrder;})
     };
     
     this.removeGameObject = function( object ) {
-        this.gameObjects.removeObject( object );
+        var index = this.gameObjects.indexOf( object );
+        if( index != -1 ) {
+            this.gameObjects.splice( index, 1 );
+        }
     };
     
     this.keyDown = function( event ) {

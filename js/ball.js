@@ -1,6 +1,7 @@
 
 function Ball() {
     this.radius = 20;
+    this.fillColor = null;
     
     this.startUpBall = function( x, y ) {
         this.startUpGameObject( 0 );
@@ -27,14 +28,16 @@ function Ball() {
         var c = this.body.GetWorldCenter();
         var x = p2cX(c.x);
         var y = p2cY(c.y);
-        //if( !x || !y || x < 0 || y < 0 )
-        //    return;
         
         context.beginPath();
         context.arc( x, y, this.radius, 0, Math.PI * 2, false );
         context.closePath();
         context.strokeStyle = "#000";
+        //context.fillStyle = this.fillColor;
         context.stroke();
+        
+        context.strokeStyle = null;
+        context.fillStyle = null;
     };
     
 };
