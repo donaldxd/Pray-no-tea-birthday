@@ -31,8 +31,6 @@ function Level1() {
     this.update = function( dt ) {
         this.updateEverything( dt );
         if( this.done ) {
-            g_GameObjectManager.clearGameObjects();
-            
             var level2 = new Level2().startUpLevel2( this.gameScreen );
             this.gameScreen.changeLevel( level2 );
         }

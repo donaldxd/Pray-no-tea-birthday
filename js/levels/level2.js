@@ -38,7 +38,6 @@ function Level2() {
         this.updateEverything();
         
         if( this.done ) {
-            g_GameObjectManager.clearGameObjects();
             this.gameScreen.changeLevel( new Level3().startUpLevel3( this.gameScreen ) );
         }
     }
