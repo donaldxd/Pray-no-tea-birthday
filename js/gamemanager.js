@@ -89,4 +89,8 @@ function GameManager() {
     this.popScreen = function( screen ) {
         this.screens.pop();
     }
+    
+    this.topScreen = function() {
+        return this.screens[ this.screens.length -1 ];
+    }
 }

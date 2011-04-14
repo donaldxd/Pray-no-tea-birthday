@@ -24,8 +24,11 @@ function Level5() {
         this.updateEverything();
         
         if( this.done ) {
-            g_GameObjectManager.clearGameObjects();
+            //g_GameObjectManager.clearGameObjects();
+            
             // New screen!
+            g_GameManager.topScreen().update = function() {}
+            g_GameManager.pushScreen( new EndingScreen().startUpEndingScreen() );
         }
     }
     
