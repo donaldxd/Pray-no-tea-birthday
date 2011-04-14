@@ -101,7 +101,7 @@ function Player() {
     }
     
     this.beginContact = function( obj, contact, number ) {
-        var normal = getNormal( contact );
+        var normal = contact.getNormal();
         if( number == 1 && normal.y > 0) {
             this.bCanJump = true;
         }
@@ -111,7 +111,7 @@ function Player() {
     };
     
     this.endContact = function( obj, contact, number ) {
-        var normal = getNormal( contact );
+        var normal = contact.getNormal();
         if( number == 1 && normal.y > 0) {
             this.bCanJump = false;
         }

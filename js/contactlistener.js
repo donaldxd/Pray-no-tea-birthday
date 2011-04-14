@@ -23,10 +23,10 @@ function ContactListener() {
     
 }
 
-function getNormal( contact ) {
+Box2D.Dynamics.Contacts.b2Contact.prototype.getNormal = function() {
     var manifold = new Box2D.Collision.b2WorldManifold();
-    contact.GetWorldManifold( manifold );
+    this.GetWorldManifold( manifold );
     return manifold.m_normal;
-}
+};
 
 ContactListener.prototype = new Box2D.Dynamics.b2ContactListener();
