@@ -41,14 +41,10 @@ function GameManager() {
         
         // Clear the buffer
         this.backBufferContext2D.clearRect(0, 0, this.backBuffer.width, this.backBuffer.height);
-                
+        
         // Screens
         this.updateScreens( dt );
-        this.renderScreens( dt );
-        
-        // Game Objects
-        this.updateGameObjects( dt );
-        this.renderGameObjects( this.backBufferContext2D );
+        this.renderScreens( this.backBufferContext2D );
         
         // Copy Back buffer
         this.context2D.clearRect(0, 0, this.canvas.width, this.canvas.height);

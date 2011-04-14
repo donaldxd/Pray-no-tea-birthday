@@ -38,7 +38,14 @@ function GameScreen() {
         g_World.ClearForces();
         
         g_Camera.update( dt );
+        
+        // Game Objects
+        g_GameManager.updateGameObjects( dt );
     };
+    
+    this.render = function( context ) {
+        g_GameManager.renderGameObjects( context );
+    }
 };
 
 GameScreen.prototype = new Screen();
