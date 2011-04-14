@@ -80,10 +80,8 @@ function Level() {
         this.lives--;
         
         if( this.lives < 0 ) {
-            // Goto Death screen
-            g_GameManager.popScreen();
-            //this.gameScreen.stopUpdate();
-            //g_GameManager.pushScreen( new DeadScreen().startUpDeadScreen() );
+            // Goto Game Over screen
+            g_GameManager.pushScreen( new GameOverScreen().startUpGameOverScreen() );
         }
         else {
             g_GameManager.pushScreen( new DeadScreen().startUpDeadScreen() );
