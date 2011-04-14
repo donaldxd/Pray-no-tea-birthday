@@ -100,9 +100,24 @@ function Player() {
         return vector.length == 1;*/
     }
     
-    this.shouldCollide = function( obj ) {
-        if( obj instanceof Box )
-            return false;
+    this.beginContact = function( obj, contact, number ) {
+        var normal = getNormal( contact );
+        if( number == 1 && normal.y > 0) {
+            this.bCanJump = true;
+        }
+        else if( number == 2 && normal.y < 0 ) {
+            this.canJump = true;
+        }
+    };
+    
+    this.endContact = function( obj, contact, number ) {
+        var normal = getNormal( contact );
+        if( number == 1 && normal.y > 0) {
+            this.bCanJump = false;
+        }
+        else if( number == 2 && normal.y < 0 ) {
+            this.canJump = false;
+        }
     };
 }
 

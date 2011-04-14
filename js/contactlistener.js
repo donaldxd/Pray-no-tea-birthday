@@ -4,28 +4,22 @@ function ContactListener() {
     this.BeginContact = function( contact ) {
         var obj1 = contact.GetFixtureA().GetBody().GetUserData();
         var obj2 = contact.GetFixtureB().GetBody().GetUserData();
-        
-        var normal = getNormal( contact );
-        if( obj1 instanceof Player && normal.y > 0 ) {
-            obj1.bCanJump = true;
-        }
-        else if( obj2 instanceof Player && normal.y < 0 ) {
-            obj2.bCanJump = true;
-        }  
+                
+        if( obj1.beginContact )
+            obj1.beginContact( obj2, contact, 1 );
+        if( obj2.beginContact )
+            obj2.beginContact( obj1, contact, 2 );
     };
     
     this.EndContact = function( contact ) {
         var obj1 = contact.GetFixtureA().GetBody().GetUserData();
         var obj2 = contact.GetFixtureB().GetBody().GetUserData();
-
-        var normal = getNormal( contact );
-        if( obj1 instanceof Player && normal.y > 0 ) {
-            obj1.bCanJump = false;
-        }
-        else if( obj2 instanceof Player && normal.y < 0 ) {
-            obj2.bCanJump = false;
-        }  
-    }
+        
+        if( obj1.endContact )
+            obj1.endContact( obj2, contact, 1 );
+        if( obj2.endContact )
+            obj2.endContact( obj1, contact, 2 );
+    };
     
 }
 
