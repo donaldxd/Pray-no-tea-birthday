@@ -3,6 +3,8 @@ function GameManager() {
     
     this.lastFrame = new Date().getTime();
     this.gameObjects = new Array();
+    this.screens = new Array();
+    
     this.canvas = null;
     this.context2D = null;
     this.backBuffer = null;
@@ -22,10 +24,7 @@ function GameManager() {
         this.backBuffer.width = this.canvas.width;
         this.backBuffer.height = this.canvas.height;
         this.backBufferContext2D = this.backBuffer.getContext('2d');
-        
-        // Startup the application manager
-        this.appManager = new AppManager().startUpAppManager();
-        
+                
         // Call back
         setInterval(function(){g_GameManager.gameTick();}, SECONDS_BETWEEN_FRAMES);
         
@@ -40,11 +39,13 @@ function GameManager() {
         // Clear the buffer
         this.backBufferContext2D.clearRect(0, 0, this.backBuffer.width, this.backBuffer.height);
                 
+        // Screens
+        this.updateScreens( dt );
+        this.renderScreens( dt );
+        
         // Game Objects
         this.updateGameObjects( dt );
         this.renderGameObjects( this.backBufferContext2D );
-        
-        this.appManager.update( dt );
         
         // Copy Back buffer
         this.context2D.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -80,6 +81,12 @@ function GameManager() {
     };
     
     this.keyDown = function( event ) {
+        for( var i=0; i<this.screens.length; i++ ) {
+            var screen = this.screens[i];
+            if( screen.keyDown )
+                screen.keyDown( event.keyCode );
+        }
+        
         for( var i=0; i<this.gameObjects.length; i++ ) {
             var obj = this.gameObjects[i];
             if( obj.keyDown )
@@ -88,10 +95,40 @@ function GameManager() {
     };
     
     this.keyUp = function( event ) {
+        for( var i=0; i<this.screens.length; i++ ) {
+            var screen = this.screens[i];
+            if( screen.keyUp )
+                screen.keyUp( event.keyCode );
+        }
+        
         for( var i=0; i<this.gameObjects.length; i++ ) {
             var obj = this.gameObjects[i];
             if( obj.keyUp )
                 obj.keyUp( event.keyCode );
         }
     };
+    
+    this.updateScreens = function( dt ) {        
+        for( var i=0; i<this.screens.length; i++ ) {
+            var screen = this.screens[i];
+            if( screen.update )
+                screen.update( dt );
+        }
+    };
+    
+    this.renderScreens = function( context ) {
+        for( var i=0; i<this.screens.length; i++ ) {
+            var screen = this.screens[i];
+            if( screen.render )
+                screen.render( context );
+        }
+    }
+    
+    this.pushScreen = function( screen ) {
+        this.screens.push( screen );
+    }
+    
+    this.popScreen = function( screen ) {
+        this.screens.pop();
+    }
 }
