@@ -24,7 +24,6 @@ function Level1() {
         return this;
     };
     
-    
 }
 
 Level1.prototype = new Level();
