@@ -18,7 +18,8 @@ function GameScreen() {
         
         // Camera
         g_Camera = new Camera( this.player.body );
-        g_Camera.MAX_WIDTH = this.length;
+        
+        g_GameManager.pushScreen( new Level1().startUpLevel1() );
         
         return this;
     };
