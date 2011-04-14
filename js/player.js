@@ -42,6 +42,11 @@ function Player() {
             this.body.ApplyImpulse( this.jumpForce, this.body.GetWorldCenter() );
             this.bCanJump = false;
         }
+        
+        if( this.die ) {
+            this.body.SetPosition( this.startPos );
+            this.die = false;
+        }
     }
     
     this.keyDown = function( key ) {

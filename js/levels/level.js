@@ -65,4 +65,13 @@ function Level() {
         // Game Objects
         g_GameObjectManager.update( dt );
     }
+    
+    this.killPlayer = function() {
+        console.log("Killing the player");
+        // Play some animation
+     
+        // Kill the player
+        this.player.die = true;
+        this.player.startPos = g2pVec( this.startPos );
+    }
 }

@@ -14,7 +14,6 @@ function GameScreen() {
     
     this.update = function( dt ) {
         if( this.currentLevel.update ) {
-            console.log( this.currentLevel );
             this.currentLevel.update( dt );
         }
     };

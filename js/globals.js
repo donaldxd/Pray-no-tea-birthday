@@ -36,6 +36,10 @@ function g2p( x ) {
     return x / PPM;
 }
 
+function g2pVec( vec ) {
+    return new b2Vec2( g2p(vec.x), g2p(vec.y) );
+}
+
 // Physics to Camera units
 function p2cX( x ) {
     return g2cX( p2g(x) );

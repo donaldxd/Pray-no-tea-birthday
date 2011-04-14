@@ -6,7 +6,6 @@
 function Level2() {
     
     this.startUpLevel2 = function( gs ) {
-        console.log("Level2");
         this.length = 1200; // Length of the level in pixels
         
         this.endPos.Set( 1000, 200 );

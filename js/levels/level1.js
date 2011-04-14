@@ -21,7 +21,7 @@ function Level1() {
         new Item().startUpItem( 140, 50 );
         new Item().startUpItem( 150, 50 );
         
-        new Monster().startUpMonster( 300, 400 );
+        new Monster().startUpMonster( this, 300, 400 );
         
         this.createBoundingBox();
                 
@@ -33,10 +33,6 @@ function Level1() {
     }
     
     this.update = function( dt ) {
-        if( this.gameScreen.currentLevel != this ) {
-            console.log("WTF!");
-        }
-        
         this.updateEverything( dt );
         if( this.done ) {
             g_GameObjectManager.clearGameObjects();
