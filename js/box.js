@@ -13,6 +13,7 @@ function Box() {
         bodyDef.position.Set( x/PPM, y/PPM );
         bodyDef.type = isDynamic ? b2Body.b2_dynamicBody : b2Body.b2_staticBody; 
         bodyDef.userData = this;
+        bodyDef.fixedRotation = true;
         
         this.body = g_World.CreateBody(bodyDef);
         

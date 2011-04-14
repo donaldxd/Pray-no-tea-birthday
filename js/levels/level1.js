@@ -21,6 +21,8 @@ function Level1() {
         new Item().startUpItem( 140, 50 );
         new Item().startUpItem( 150, 50 );
         
+        new Monster().startUpMonster( 300, 400 );
+        
         this.createBoundingBox();
                 
         return this;
