@@ -25,6 +25,9 @@ function GameManager() {
         this.backBuffer.height = this.canvas.height;
         this.backBufferContext2D = this.backBuffer.getContext('2d');
                 
+        this.canvas.style.backgroundColor = "#FFFFFF";
+        this.backBuffer.style.backgroundColor = "#FFFFFF";
+        
         // Call back
         setInterval(function(){g_GameManager.gameTick();}, SECONDS_BETWEEN_FRAMES);
         
