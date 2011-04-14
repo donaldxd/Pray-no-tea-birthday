@@ -3,7 +3,7 @@
  */
 function Box() {
     
-    this.startUpBox = function( x, y, w, h ) {
+    this.startUpBox = function( x, y, w, h, isDynamic ) {
         this.startUpGameObject( 0 );
         this.width = w;  // in pixels
         this.height = h; // in pixels
@@ -11,7 +11,7 @@ function Box() {
         // Physics
         var bodyDef = new b2BodyDef();
         bodyDef.position.Set( x/PPM, y/PPM );
-        bodyDef.type = b2Body.b2_staticBody; 
+        bodyDef.type = isDynamic ? b2Body.b2_dynamicBody : b2Body.b2_staticBody; 
         bodyDef.userData = this;
         
         this.body = g_World.CreateBody(bodyDef);

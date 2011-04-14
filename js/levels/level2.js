@@ -17,7 +17,11 @@ function Level2() {
         }
         
         // A Platform in the middle
-        new Box().startUpBox( 500, 300, 300, 10 );
+        new Box().startUpBox( 500, 300, 140, 10 );
+        
+        // Some boxes
+        new Box().startUpBox( 500, 30, 40, 40, true );
+        new Box().startUpBox( 500, 120, 40, 40, true );
         
         /*
         new Item().startUpItem( 130, 50 );
