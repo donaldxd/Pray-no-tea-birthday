@@ -9,6 +9,11 @@ function Screen() {
     }
     
     this.stopUpdate = function() {
+        this._tempUpdate = this.update;
         this.update = function(){};
+    }
+    
+    this.startUpdate = function() {
+        this.update = this._tempUpdate;
     }
 }
