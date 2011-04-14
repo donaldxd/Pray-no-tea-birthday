@@ -6,8 +6,8 @@ var SECONDS_BETWEEN_FRAMES = 1 / FPS;
 
 function main() {
    new GameManager().startUpGameManager();
-   //g_GameManager.pushScreen( new EndingScreen().startUpEndingScreen() );
-   g_GameManager.pushScreen( new GameScreen().startUpGameScreen() );
+   g_GameManager.pushScreen( new IntroScreen().startUpIntroScreen() );
+//   g_GameManager.pushScreen( new GameScreen().startUpGameScreen() );
 };
 
 // call main after all resources have finished loading
