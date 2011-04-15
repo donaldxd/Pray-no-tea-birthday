@@ -20,6 +20,13 @@ function GameScreen() {
     
     this.render = function( context ) {
         g_GameObjectManager.render( context );
+        
+        var x = SCREEN_WIDTH - 70;
+        var y = 30;
+        for( var i=0; i<3; i++ ) {
+            this.renderLifeIcon( context, x, y );
+            x += 25;
+        }
     };
     
     this.changeLevel = function( level ) {
@@ -31,6 +38,13 @@ function GameScreen() {
     }
     this.keyUp = function( key ) {
         g_GameObjectManager.keyUp( key );
+    }
+    
+    this.renderLifeIcon = function( context, x, y ) {
+        context.beginPath();
+        context.arc( x, y, 10, 0, Math.PI * 1, true );
+        context.closePath();
+        context.stroke();
     }
 };
 
