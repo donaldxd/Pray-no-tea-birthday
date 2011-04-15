@@ -8,6 +8,7 @@ function Level2() {
     this.startUpLevel2 = function( gs ) {
         this.width = 1200; // Length of the level in pixels
         
+        this.startPos.Set( 100, 400 );
         this.endPos.Set( 1000, 200 );
         this.startUpLevel( gs );
         
