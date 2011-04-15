@@ -29,7 +29,7 @@ function Box() {
     };
     
     this.render = function( context ) {
-        var c = this.body.GetWorldCenter();
+        var c = this.body.GetPosition();
         var x = p2cX(c.x) - this.width/2;
         var y = p2cY(c.y) - this.height/2;
         
