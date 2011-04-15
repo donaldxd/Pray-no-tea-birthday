@@ -9,6 +9,7 @@ var g_World;
 var g_GameManager;
 var g_GameObjectManager;
 var g_Camera;
+var g_Context;
 
 var b2AABB = Box2D.Collision.b2AABB;
 var b2Vec2 = Box2D.Common.Math.b2Vec2;

@@ -41,6 +41,18 @@ function Level() {
         // End position
         this.levelChanger = new LevelChanger().startUpLevelChanger( this, this.endPos.x, this.endPos.y );
         this.levelChanger.getNextLevel = this.nextLevel;
+        
+        // Debug Draw
+        var debugDraw = new b2DebugDraw();
+        debugDraw.SetSprite( g_Context );
+        debugDraw.SetDrawScale( PIXELS_PER_METER );
+        debugDraw.SetAlpha( 0.5 );
+        debugDraw.SetFillAlpha(0.5);
+        debugDraw.SetLineThickness(1.0);
+        debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+        g_World.SetDebugDraw(debugDraw);
+        
+        return this;
     };
     
     this.createBoundingBox = function() {

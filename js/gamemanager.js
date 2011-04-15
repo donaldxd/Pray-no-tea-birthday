@@ -23,7 +23,8 @@ function GameManager() {
         this.backBuffer.width = this.canvas.width;
         this.backBuffer.height = this.canvas.height;
         this.backBufferContext2D = this.backBuffer.getContext('2d');
-                
+        g_Context = this.backBufferContext2D;
+        
         this.canvas.style.backgroundColor = "#FFFFFF";
         this.backBuffer.style.backgroundColor = "#FFFFFF";
         

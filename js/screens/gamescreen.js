@@ -23,6 +23,7 @@ function GameScreen() {
     };
     
     this.render = function( context ) {
+        //g_World.DrawDebugData();
         g_GameObjectManager.render( context );
         
         //
