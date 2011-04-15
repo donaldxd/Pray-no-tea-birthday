@@ -2,12 +2,17 @@
 function Player() {
     
     this.velocity = 1;
-    this.jumpForce = new b2Vec2( 0, -0.3 );
+    this.jumpForce = new b2Vec2( 0, -1.5 );
+    this.image = new Image();
     
     this.startUpPlayer = function( x, y ) {
         this.startUpGameObject( 0 );
-        this.width = 30;
-        this.height = 30;
+        
+        // Images
+        this.image.src = "img/dead_tea.png";
+        console.log( this.image.width + ", " + this.image.height );
+        this.width = 40;
+        this.height = 122;
         
         // Physics
         var bodyDef = new b2BodyDef();
@@ -130,6 +135,17 @@ function Player() {
             this.canJump = false;
         }
     };
+    
+    //
+    // Render
+    //
+    this.render = function( context ) {
+        var pos = this.body.GetPosition();
+        var x = p2cX( pos.x ) - this.image.width/2;
+        var y = p2cY( pos.y ) - this.image.height/2;
+        
+        context.drawImage( this.image, x, y );
+    }
 }
 
 Player.prototype = new Box();
