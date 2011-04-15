@@ -7,7 +7,8 @@ function Item() {
     
     this.die = false;
     
-    this.startUpItem = function( x, y ) {
+    this.startUpItem = function( gs, x, y ) {
+        this.gameScreen = gs;
         this.radius = 10;
         this.fillColor = "#eee";
         this.startUpBall( x, y );        
@@ -19,8 +20,10 @@ function Item() {
     }
     
     this.beginContact = function( obj, contact, number ) {
-        if( obj instanceof Player )
+        if( obj instanceof Player ) {
             this.die = true;
+            this.gameScreen.addCoin();
+        }
     };
 }
 

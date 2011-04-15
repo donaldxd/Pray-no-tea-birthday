@@ -70,6 +70,13 @@ function GameScreen() {
         context.closePath();
         context.stroke();
     }
+    
+    this.addCoin = function() {
+        this.coins++;
+        if( this.coins % 20 == 0 ) {
+            this.lives = (this.lives + 1) > 3 ? this.lives : this.lives+1; 
+        }
+    }
 };
 
 GameScreen.prototype = new Screen();

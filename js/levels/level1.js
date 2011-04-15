@@ -17,10 +17,11 @@ function Level1() {
         new Ball().startUpBall( 500, 120 );
         new Ball().startUpBall( 510, 30 );
         
-        new Item().startUpItem( 130, 50 );
-        new Item().startUpItem( 140, 50 );
-        new Item().startUpItem( 150, 50 );
-        
+        for( var i=0; i<10; i++ ) {
+            new Item().startUpItem( gs, 430, 50 );
+            new Item().startUpItem( gs, 440, 50 );
+            new Item().startUpItem( gs, 450, 50 );
+        }
         new Monster().startUpMonster( this, 300, 400 );
         
         this.createBoundingBox();
