@@ -16,6 +16,7 @@ function Player() {
         bodyDef.type = b2Body.b2_dynamicBody; 
         bodyDef.userData = this;
         bodyDef.allowSleep = false;
+        bodyDef.fixedRotation = true;
         
         this.body = g_World.CreateBody(bodyDef);
         
