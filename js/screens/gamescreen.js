@@ -7,6 +7,7 @@ function GameScreen() {
 
     // Player info
     this.lives = 3;
+    this.coins = 0;
     
     this.startUpGameScreen = function() {
         this.startUpScreen();
@@ -24,12 +25,25 @@ function GameScreen() {
     this.render = function( context ) {
         g_GameObjectManager.render( context );
         
+        //
+        // Render Lives
+        //
         var x = SCREEN_WIDTH - 70;
         var y = 30;
         for( var i=0; i< this.lives; i++ ) {
             this.renderLifeIcon( context, x, y );
             x += 25;
         }
+        
+        //
+        // Render coins
+        //
+        var y = 60;
+        this.renderCoin( context, SCREEN_WIDTH - 20, y );
+        
+        // Render number
+        context.font = "30px sans-serif"
+        context.fillText( this.coins, SCREEN_WIDTH - 70, y+10 );
     };
     
     this.changeLevel = function( level ) {
@@ -46,6 +60,13 @@ function GameScreen() {
     this.renderLifeIcon = function( context, x, y ) {
         context.beginPath();
         context.arc( x, y, 10, 0, Math.PI * 1, true );
+        context.closePath();
+        context.stroke();
+    }
+    
+    this.renderCoin = function( context, x, y ) {
+        context.beginPath();
+        context.arc( x, y, 10, 0, Math.PI * 2, false );
         context.closePath();
         context.stroke();
     }
