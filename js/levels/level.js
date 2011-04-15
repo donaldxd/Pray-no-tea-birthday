@@ -19,10 +19,7 @@ function Level() {
     // Start Position
     this.startPos = new b2Vec2( 100, 100 );
     this.endPos = new b2Vec2();
-    
-    // Player info
-    this.lives = 3;
-    
+        
     this.startUpLevel = function( gs ) {
         this.gameScreen = gs;
         
@@ -77,9 +74,9 @@ function Level() {
      
         // Kill the player
         this.player.die = true;
-        this.lives--;
+        this.gameScreen.lives--;
         
-        if( this.lives < 0 ) {
+        if( this.gameScreen.lives < 0 ) {
             // Goto Game Over screen
             g_GameManager.pushScreen( new GameOverScreen().startUpGameOverScreen() );
         }

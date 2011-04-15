@@ -5,6 +5,9 @@
 
 function GameScreen() {
 
+    // Player info
+    this.lives = 3;
+    
     this.startUpGameScreen = function() {
         this.startUpScreen();
         
@@ -23,7 +26,7 @@ function GameScreen() {
         
         var x = SCREEN_WIDTH - 70;
         var y = 30;
-        for( var i=0; i<3; i++ ) {
+        for( var i=0; i< this.lives; i++ ) {
             this.renderLifeIcon( context, x, y );
             x += 25;
         }
