@@ -28,6 +28,9 @@ function GameManager() {
         this.canvas.style.backgroundColor = "#FFFFFF";
         this.backBuffer.style.backgroundColor = "#FFFFFF";
         
+        // Load the Resources
+        new ResourceLoader().startUpResourceLoader();
+        
         // Call back
         setInterval(function(){g_GameManager.gameTick();}, SECONDS_BETWEEN_FRAMES);
         
@@ -38,6 +41,12 @@ function GameManager() {
         var thisFrame = new Date().getTime();
         var dt = (thisFrame - this.lastFrame)/1000;
         this.lastFrame = thisFrame;
+        
+        // Resource Loading
+        if( !g_ResourceLoader.loaded() ) {
+            console.log( "Loaded " + g_ResourceLoader.imagesLoaded );
+            return;
+        }
         
         // Clear the buffer
         this.backBufferContext2D.clearRect(0, 0, this.backBuffer.width, this.backBuffer.height);

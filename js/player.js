@@ -9,8 +9,8 @@ function Player() {
         this.startUpImageObject( "img/dead_tea.png" );
         
         // Images
-        this.width = 40;
-        this.height = 122;
+        this.width = this.image.width;
+        this.height = this.image.height;
         
         // Physics
         var bodyDef = new b2BodyDef();
