@@ -6,11 +6,9 @@ function Player() {
     this.image = new Image();
     
     this.startUpPlayer = function( x, y ) {
-        this.startUpGameObject( 0 );
+        this.startUpImageObject( "img/dead_tea.png" );
         
         // Images
-        this.image.src = "img/dead_tea.png";
-        console.log( this.image.width + ", " + this.image.height );
         this.width = 40;
         this.height = 122;
         
@@ -135,17 +133,6 @@ function Player() {
             this.canJump = false;
         }
     };
-    
-    //
-    // Render
-    //
-    this.render = function( context ) {
-        var pos = this.body.GetPosition();
-        var x = p2cX( pos.x ) - this.image.width/2;
-        var y = p2cY( pos.y ) - this.image.height/2;
-        
-        context.drawImage( this.image, x, y );
-    }
 }
 
-Player.prototype = new Box();
+Player.prototype = new ImageObject();
