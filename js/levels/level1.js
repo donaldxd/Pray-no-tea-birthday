@@ -27,7 +27,7 @@ function Level1() {
         this.createBoundingBox();
         
         //
-        g_GameManager.pushScreen( new LevelEntryScreen().startUpLevelEntryScreen() );
+        //g_GameManager.pushScreen( new LevelEntryScreen().startUpLevelEntryScreen() );
                 
         return this;
     };
