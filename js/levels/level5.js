@@ -41,6 +41,9 @@ function Level5() {
         for( var i = 0; i < 20; i++ ) {
             new Bottle().startUpBottle( gs, x + 70*i, 400 );
         }
+        for( var i = 0; i < 20; i++ ) {
+            new Bottle().startUpBottle( gs, x + 70*i, 200 );
+        }
         
         var screen = new LevelEntryScreen().startUpLevelEntryScreen();
         screen.image.src =  "img/level5.jpg";
