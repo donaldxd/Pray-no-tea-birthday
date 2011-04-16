@@ -7,6 +7,8 @@ function Teddy() {
         
         this.startUpImageObject( "img/teddy.png" );
         this.createBody( x,y );
+        
+        return this;
     }
     
     this.beginContact = function( obj, contact, number ) {
