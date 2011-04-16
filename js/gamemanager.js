@@ -100,6 +100,13 @@ function GameManager() {
         this.screens.pop();
     }
     
+    this.removeScreen = function( screen ) {
+        var index = this.screens.indexOf( screen );
+        if( index != -1 ) {
+            this.screens.splice( index, 1 );
+        }
+    }
+    
     this.topScreen = function() {
         return this.screens[ this.screens.length -1 ];
     }
