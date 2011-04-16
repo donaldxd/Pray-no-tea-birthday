@@ -65,7 +65,6 @@ function Player() {
     };
     
     this.update = function( dt ) {
-        console.log( "Update " + dt );
         var vel = this.body.GetLinearVelocity();
         if( this.right ) {
             vel.x = this.velocity;
