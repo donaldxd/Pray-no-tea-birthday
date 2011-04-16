@@ -7,10 +7,11 @@
 function LevelEntryScreen() {
     
     this.image = new Image();
-    this.text = "Level";
+    this.text;
     
     this.startUpLevelEntryScreen = function() {
         this.startUpScreen();
+        g_GameManager.topScreen().stopUpdate();
         
         this.image.src = "img/cloud.png";
         return this;
@@ -24,8 +25,11 @@ function LevelEntryScreen() {
     
     this.render = function( context ) {
         this.renderCloud( context );
-        context.font = "100px sans-serif"
-        context.fillText( this.text, 150, SCREEN_HEIGHT/2 );
+        
+        if( this.text ) {
+            context.font = "100px sans-serif"
+            context.fillText( this.text, 150, SCREEN_HEIGHT/2 );
+        }
     }
     
     this.keyDown = function( key ) {
@@ -35,6 +39,7 @@ function LevelEntryScreen() {
     
     this.next = function() {
         g_GameManager.removeScreen( this );
+        g_GameManager.topScreen().startUpdate();
     }
 }
 

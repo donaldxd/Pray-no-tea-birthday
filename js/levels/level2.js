@@ -32,6 +32,10 @@ function Level2() {
         
         this.createBoundingBox();
         
+        var screen = new LevelEntryScreen().startUpLevelEntryScreen();
+        screen.image.src =  "img/level2.png";
+        g_GameManager.pushScreen( screen );
+        
         return this;
     };
     
