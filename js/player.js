@@ -6,11 +6,40 @@ function Player() {
     this.image = new Image();
     
     this.startUpPlayer = function( x, y ) {
-        this.startUpImageObject( "img/dead_tea.png" );
+        this.startUpImageObject( "img/n.png" );
         
-        // Images
-        this.width = this.image.width;
-        this.height = this.image.height;
+        this.frames = new Array();
+        this.frames[0] = new Image();
+        this.frames[1] = new Image();
+        this.frames[2] = new Image();
+        this.frames[3] = new Image();
+        this.frames[4] = new Image();
+        this.frames[5] = new Image();
+        this.frames[6] = new Image();
+        this.frames[7] = new Image();
+        
+        this.frames[0].src = "img/n.png";
+        this.frames[1].src = "img/wr1.png"
+        this.frames[2].src = "img/wr2.png"
+        this.frames[3].src = "img/wr3.png"
+        this.frames[4].src = "img/wl1.png"
+        this.frames[5].src = "img/wl2.png"
+        this.frames[6].src = "img/wl3.png"
+        this.frames[7].src = "img/jump.png"
+        
+        this.normal = 0;
+        this.leftBegin = 4;
+        this.leftEnd = 6;
+        this.rightBegin = 1;
+        this.rightEnd = 3;
+        this.jump = 7;
+        
+        this.currentFrame = 0;
+        this.timeElapsed = 0;
+        
+        // Height and Width
+        this.width = 33;
+        this.height = 120;
         
         // Physics
         var bodyDef = new b2BodyDef();
@@ -36,6 +65,7 @@ function Player() {
     };
     
     this.update = function( dt ) {
+        console.log( "Update " + dt );
         var vel = this.body.GetLinearVelocity();
         if( this.right ) {
             vel.x = this.velocity;
@@ -52,6 +82,9 @@ function Player() {
             this.body.SetPosition( this.startPos );
             this.die = false;
         }
+        
+        this.updateFrames( dt );
+        this.image = this.frames[ this.currentFrame ];
     }
     
     this.keyDown = function( key ) {
@@ -133,6 +166,55 @@ function Player() {
             this.canJump = false;
         }
     };
+    
+    this.timeBetweenFrames = 0.1;
+    
+    this.updateFrames = function( dt ) {
+        // Jumping
+        var yVel = this.body.GetLinearVelocity().y;
+        if(  Math.abs(yVel) - 0.2 > 0 ) {
+            this.currentFrame = this.jump;
+            return;
+        }
+        
+        if( this.left ) {
+            // Get to the start
+            if( this.currentFrame < this.leftBegin || this.currentFrame > this.leftEnd ) {
+                this.currentFrame = this.leftBegin;
+                return;
+            }
+            
+            this.timeElapsed += dt;
+            if( this.timeElapsed > this.timeBetweenFrames ) {
+                this.currentFrame++;
+                if( this.currentFrame == this.leftEnd+1 )
+                    this.currentFrame = this.leftBegin;
+                
+                this.timeElapsed = 0;
+            }
+            return;
+        }
+        else if( this.right ) {
+            // Get to the start
+            if( this.currentFrame < this.rightBegin || this.currentFrame > this.rightEnd ) {
+                this.currentFrame = this.rightBegin;
+                return;
+            }
+            
+            this.timeElapsed += dt;
+            if( this.timeElapsed > this.timeBetweenFrames ) {
+                this.currentFrame++;
+                if( this.currentFrame == this.rightEnd+1 )
+                    this.currentFrame = this.rightBegin;
+                
+                this.timeElapsed = 0;
+            }
+            return;
+        }
+        
+        this.currentFrame = this.normal;
+        this.timeElapsed = 0;
+    }
 }
 
 Player.prototype = new ImageObject();
