@@ -23,16 +23,16 @@ function Level3() {
         
         
         x += 400;
-        new Box().startUpBox( x, 500 - 185/2, 150, 185, false );
+        new Box().startUpBox( x, 500 - 185/2, 150, 185, true );
         new Teddy().startUpTeddy( this, x+230, 100 );
         x += 450;
-        new Box().startUpBox( x, 500 - 185/2, 150, 185, false );
+        new Box().startUpBox( x, 500 - 185/2, 150, 185, true );
         new Teddy().startUpTeddy( this, x+230, 100 );
         x += 450;
-        new Box().startUpBox( x, 500 - 185/2, 150, 185, false );
+        new Box().startUpBox( x, 500 - 185/2, 150, 185, true );
         new Teddy().startUpTeddy( this, x+230, 100 );
         x += 450;
-        new Box().startUpBox( x, 500 - 185/2, 150, 185, false );
+        new Box().startUpBox( x, 500 - 185/2, 150, 185, true );
         new Teddy().startUpTeddy( this, x+230, 100 );
         x += 450;
         
