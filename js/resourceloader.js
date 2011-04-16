@@ -18,6 +18,7 @@ function ResourceLoader() {
         this.images[5] = "img/wl2.png";
         this.images[6] = "img/wl3.png";
         this.images[7] = "img/n.png";
+        this.images[8] = "img/face.png";
         
         for( var i=0; i<this.images.length; i++ ) {
             var img = new Image;
@@ -27,7 +28,6 @@ function ResourceLoader() {
     }
     
     this.imageLoaded = function() {
-        console.log("Loaded " + this.imagesLoaded );
         this.imagesLoaded++;
     }
     

@@ -8,10 +8,13 @@ function GameScreen() {
     // Player info
     this.lives = 3;
     this.coins = 0;
+
+    this.faceImage = new Image();
     
     this.startUpGameScreen = function() {
         this.startUpScreen();
-        
+
+        this.faceImage.src = "img/face.png";
         this.currentLevel = new Level1().startUpLevel1( this );
         return this;
     };
@@ -29,11 +32,11 @@ function GameScreen() {
         //
         // Render Lives
         //
-        var x = SCREEN_WIDTH - 70;
-        var y = 30;
+        var x = SCREEN_WIDTH - 120;
+        var y = 10;
         for( var i=0; i< this.lives; i++ ) {
-            this.renderLifeIcon( context, x, y );
-            x += 25;
+            context.drawImage( this.faceImage, x, y);
+            x += 40;
         }
         
         //
@@ -56,13 +59,6 @@ function GameScreen() {
     }
     this.keyUp = function( key ) {
         g_GameObjectManager.keyUp( key );
-    }
-    
-    this.renderLifeIcon = function( context, x, y ) {
-        context.beginPath();
-        context.arc( x, y, 10, 0, Math.PI * 1, true );
-        context.closePath();
-        context.stroke();
     }
     
     this.renderCoin = function( context, x, y ) {
