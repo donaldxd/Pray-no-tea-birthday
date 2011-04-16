@@ -96,4 +96,15 @@ function Level() {
             g_GameManager.pushScreen( new DeadScreen().startUpDeadScreen() );
         }
     }
+    
+    this.sprinkleCarrots = function( num, y ) {
+        if ( !num ) num = 40;
+        for( var i=0; i<num; i++ ) {
+            if ( y ) {
+                new Item().startUpItem( this.gameScreen, i + Math.random() * this.width, y );
+            }
+            else
+                new Item().startUpItem( this.gameScreen, i + Math.random() * this.width, Math.random() * this.height );
+        }
+    }
 }

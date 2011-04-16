@@ -42,6 +42,8 @@ function Level3() {
         new Box().startUpBox( x+900, 100, 300, 10, false );
         new Teddy().startUpTeddy( this, x+830, 400 );
         
+        this.sprinkleCarrots( 40, 10);
+        
         var screen = new LevelEntryScreen().startUpLevelEntryScreen();
         screen.image.src =  "img/level3.jpg";
         g_GameManager.pushScreen( screen );
@@ -64,8 +66,8 @@ function Level3() {
         
         new Box().startUpBox( (w+buffer)/2, h - this.groundClearance, w+buffer, 10 ); // ground
         //new Box().startUpBox( (w+buffer)/2, 0,   w+buffer, 10 ); // top
-        new Box().startUpBox( 0, h/2, 6, h );  // left barrier
-        new Box().startUpBox( w, h/2, 6, h );  // right barrier
+        new Box().startUpBox( 0, h/2, 6, h+500 );  // left barrier
+        new Box().startUpBox( w, h/2, 6, h+500 );  // right barrier
     }
     
 }

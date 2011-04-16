@@ -34,6 +34,7 @@ function Level1() {
         this.addBirthday( x+(30*w), y, w);
         this.addPranati(  x+(65*w), y, w);
         
+        this.sprinkleCarrots( 10, 10 );
         //
         //g_GameManager.pushScreen( new LevelEntryScreen().startUpLevelEntryScreen() );
                 
