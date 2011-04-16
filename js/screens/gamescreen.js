@@ -10,12 +10,18 @@ function GameScreen() {
     this.coins = 0;
 
     this.faceImage = new Image();
+    this.carrotImage = new Image();
     
     this.startUpGameScreen = function() {
         this.startUpScreen();
 
         this.faceImage.src = "img/face.png";
+        this.carrotImage.src = "img/smallcarrot.png";
+        
         this.currentLevel = new Level1().startUpLevel1( this );
+        
+        new TimeoutScreen().startUpTimeoutScreen();
+        
         return this;
     };
     
@@ -42,12 +48,12 @@ function GameScreen() {
         //
         // Render coins
         //
-        var y = 60;
-        this.renderCoin( context, SCREEN_WIDTH - 20, y );
+        var y = 70;
+        context.drawImage( this.carrotImage, SCREEN_WIDTH - 50, y );
         
         // Render number
-        context.font = "30px sans-serif"
-        context.fillText( this.coins, SCREEN_WIDTH - 70, y+10 );
+        context.font = "italic 30px sans-serif"
+        context.strokeText( this.coins, SCREEN_WIDTH - 80, y+30 );
     };
     
     this.changeLevel = function( level ) {
@@ -59,13 +65,6 @@ function GameScreen() {
     }
     this.keyUp = function( key ) {
         g_GameObjectManager.keyUp( key );
-    }
-    
-    this.renderCoin = function( context, x, y ) {
-        context.beginPath();
-        context.arc( x, y, 10, 0, Math.PI * 2, false );
-        context.closePath();
-        context.stroke();
     }
     
     this.addCoin = function() {
