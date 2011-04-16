@@ -43,8 +43,10 @@ function GameManager() {
         this.lastFrame = thisFrame;
         
         // Resource Loading
-        if( !g_ResourceLoader.loaded() ) {
-            console.log( "Loaded " + g_ResourceLoader.imagesLoaded );
+        if( g_ResourceLoader.loaded() ) {
+            var text = "Loading " + g_ResourceLoader.imagesLoaded + " / " + g_ResourceLoader.images.length;
+            this.context2D.font = "italic bold 60px sans-serif"
+            this.context2D.fillText( text, 160, 260 );
             return;
         }
         
