@@ -25,6 +25,9 @@ function Level1() {
         new Monster().startUpMonster( this, 300, 400 );
         
         this.createBoundingBox();
+        
+        //
+        g_GameManager.pushScreen( new LevelEntryScreen().startUpLevelEntryScreen() );
                 
         return this;
     };
