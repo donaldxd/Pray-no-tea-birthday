@@ -19,23 +19,28 @@ function Level3() {
         
         var x = 400;
         new Box().startUpBox( x, -10+185/2, 10, 185, false );
-        //new Box().startUpBox( x, (185+130+185/2), 10, 185, false );
+        new Box().startUpBox( x, (185+130+185/2), 10, 185, false );
         
         
         x += 400;
         new Box().startUpBox( x, 500 - 185/2, 150, 185, false );
-        //new Teddy().startUpTeddy( 300, 100 );
+        new Teddy().startUpTeddy( this, x+230, 100 );
         x += 450;
         new Box().startUpBox( x, 500 - 185/2, 150, 185, false );
+        new Teddy().startUpTeddy( this, x+230, 100 );
         x += 450;
         new Box().startUpBox( x, 500 - 185/2, 150, 185, false );
+        new Teddy().startUpTeddy( this, x+230, 100 );
         x += 450;
         new Box().startUpBox( x, 500 - 185/2, 150, 185, false );
+        new Teddy().startUpTeddy( this, x+230, 100 );
         x += 450;
         
         new Box().startUpBox( x,     300, 200, 10, false );
+        new Teddy().startUpTeddy( this, x+330, 400 );
         new Box().startUpBox( x+400, 200, 200, 10, false );
         new Box().startUpBox( x+900, 100, 300, 10, false );
+        new Teddy().startUpTeddy( this, x+830, 400 );
         
         return this;
     };
