@@ -36,9 +36,15 @@ function Level5() {
         
         x += 1500;
         new Box().startUpBox( x, 100, 300, 400, true );
-        //var screen = new LevelEntryScreen().startUpLevelEntryScreen();
-        //screen.image.src =  "img/level5.jpg";
-        //g_GameManager.pushScreen( screen );
+        
+        x += 200;
+        for( var i = 0; i < 20; i++ ) {
+            new Bottle().startUpBottle( gs, x + 70*i, 400 );
+        }
+        
+        var screen = new LevelEntryScreen().startUpLevelEntryScreen();
+        screen.image.src =  "img/level5.jpg";
+        g_GameManager.pushScreen( screen );
         
         return this;
     };
