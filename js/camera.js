@@ -13,6 +13,7 @@ function Camera( body ) {
     
     this.x = 0;
     this.y = 0;
+    this.shake = 0;
     
     this.update = function( dt ) {
         var c = this.body.GetWorldCenter();
@@ -31,15 +32,37 @@ function Camera( body ) {
 //             this.y = 0;
 //         else if( this.y > this.MAX_HEIGHT - SCREEN_HEIGHT )
 //             this.x = this.MAX_HEIGHT - SCREEN_HEIGHT;
+            
+        this.shakeCamera( dt );
+    }
+    
+    this.addShake = function() {
+        this.shake += 1;
+    }
+    
+    this.shakeCamera = function( dt ) {
+        var xSign = Math.random() > 0.5 ? true : false;
+        var ySign = Math.random() > 0.5 ? true : false;
+        
+        var x = Math.random() * this.shake;
+        var y = Math.random() * this.shake
+        
+        if( xSign )
+            x *= -1;
+        if( ySign )
+            y *= -1;
+        
+        this.fx = this.x + x;
+        this.fy = this.y + y;
     }
 }
 
 function g2cX( x ) {
-    return x - g_Camera.x;
+    return x - g_Camera.fx;
 }
 
 function g2cY( y ) {
-    return y - g_Camera.y;
+    return y - g_Camera.fy;
 }
 
 

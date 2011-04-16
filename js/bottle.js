@@ -48,6 +48,7 @@ function Bottle() {
             this.die = true;
             
             // Add Camera Shaking
+            g_Camera.addShake();
         }
     };
 }
