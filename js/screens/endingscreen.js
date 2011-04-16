@@ -6,15 +6,19 @@
 
 function EndingScreen() {
     
+    this.image = new Image();
+    
     this.startUpEndingScreen = function() {
+        g_GameManager.topScreen().stopUpdate();
+        
         this.startUpScreen();
+        this.image.src = "img/ending.jpg";
         
         return this;
     }
     
     this.render = function( context ) {
-        context.font = "100px sans-serif"
-        context.fillText( "The End", 150, SCREEN_HEIGHT/2 );
+        context.drawImage( this.image, 0, 0 );
     }
 }
 
