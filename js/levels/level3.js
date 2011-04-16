@@ -42,6 +42,10 @@ function Level3() {
         new Box().startUpBox( x+900, 100, 300, 10, false );
         new Teddy().startUpTeddy( this, x+830, 400 );
         
+        var screen = new LevelEntryScreen().startUpLevelEntryScreen();
+        screen.image.src =  "img/level3.jpg";
+        g_GameManager.pushScreen( screen );
+        
         return this;
     };
     

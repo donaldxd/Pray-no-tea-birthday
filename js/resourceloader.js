@@ -24,15 +24,15 @@ function ResourceLoader() {
         this.images[10] = "img/intro.jpg";
         this.images[11] = "img/level2.png";
         this.images[12] = "img/carrot.png";
-        this.images[12] = "img/smallcarrot.png";
-        this.images[13] = "img/gameover.jpg";
-        this.images[13] = "img/ending.jpg";
-        this.images[14] = "img/level4.jpg";
-        this.images[15] = "img/level5.jpg";
-        this.images[16] = "img/door.png";
-        this.images[17] = "img/bottle.png";
-        this.images[18] = "img/bg1.png";
-        this.images[19] = "img/teddy.png";
+        this.images[13] = "img/smallcarrot.png";
+        this.images[14] = "img/gameover.jpg";
+        this.images[15] = "img/ending.jpg";
+        this.images[16] = "img/level4.jpg";
+        this.images[17] = "img/level5.jpg";
+        this.images[18] = "img/door.png";
+        this.images[19] = "img/bottle.png";
+        this.images[20] = "img/level3.jpg";
+        this.images[21] = "img/teddy.png";
         
         for( var i=0; i<this.images.length; i++ ) {
             var img = new Image;
