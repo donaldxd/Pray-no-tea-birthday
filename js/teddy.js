@@ -6,8 +6,12 @@ function Teddy() {
         this.level = level;
         
         this.startUpImageObject( "img/teddy.png" );
+        this.width = this.image.width;
+        this.height = this.image.height;
+        
         this.createBody( x,y );
         
+        console.log( "Creating teddy ");
         return this;
     }
     

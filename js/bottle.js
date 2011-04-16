@@ -16,6 +16,7 @@ function Bottle() {
         
         this.createBody( x, y );
         
+        console.log( "Creating bottle ");
         return this;
     }
     
