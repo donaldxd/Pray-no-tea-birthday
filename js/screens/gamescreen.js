@@ -17,10 +17,8 @@ function GameScreen() {
 
         this.faceImage.src = "img/face.png";
         this.carrotImage.src = "img/smallcarrot.png";
-        
+                
         this.currentLevel = new Level1().startUpLevel1( this );
-        
-        new TimeoutScreen().startUpTimeoutScreen();
         
         return this;
     };

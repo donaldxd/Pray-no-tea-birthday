@@ -17,6 +17,10 @@ function Level4() {
         
         this.createBoundingBox();
         
+        var screen = new LevelEntryScreen().startUpLevelEntryScreen();
+        screen.image.src =  "img/level4.jpg";
+        g_GameManager.pushScreen( screen );
+        
         return this;
     };
     
