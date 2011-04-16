@@ -6,20 +6,22 @@
 
 function IntroScreen() {
     
+    this.image = new Image();
+    
     this.startUpIntroScreen = function() {
         this.startUpScreen();
+        this.image.src = "img/intro.jpg";
         this.start = new Date();
         return this;
     }
     
     this.render = function( context ) {
-        context.font = "100px sans-serif"
-        context.fillText( "Intro Text", 150, SCREEN_HEIGHT/2 );
+        context.drawImage( this.image, 0, 0 );
     }
     
     this.update = function( dt ) {
         var elapsed = (new Date()) - this.start;
-        if( elapsed >= 2000 )
+        if( elapsed >= 5000 )
             this.next();
     }
     

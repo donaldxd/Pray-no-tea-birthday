@@ -23,7 +23,7 @@ function DeadScreen() {
         var y = SCREEN_HEIGHT/2 - this.image.height/2;
         context.drawImage( this.image, x, y );
         
-        context.font = "italic 80px sans-serif"
+        context.font = "80px sans-serif"
         context.fillText( "Oh no! You died!", 100, 420 );
     }
     
