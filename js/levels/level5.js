@@ -18,6 +18,10 @@ function Level5() {
         for( var i =0; i<10; i++ )
             new Box().startUpBox( 200, 200, 30, 30, true );
         
+        
+        for( var i =0; i<10; i++ )
+            new Box().startUpBox( 240, 200, 30, 30, true );
+        
         var x = 500;
         
         new Box().startUpBox( x,     300, 310, 230, false );
