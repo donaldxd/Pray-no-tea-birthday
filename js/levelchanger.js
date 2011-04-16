@@ -6,11 +6,13 @@ function LevelChanger() {
     
     // A function that returns the next level
     this.getNextLevel = null;
+    this.image = new Image();
     
     this.startUpLevelChanger = function( level, x, y) {
         this.level = level;
         this.startUpGameObject( 0 );
         
+        this.image.src = "img/door.png";
         // Physics
         var bodyDef = new b2BodyDef();
         bodyDef.position.Set( g2p(x), g2p(y) );
@@ -21,7 +23,10 @@ function LevelChanger() {
         
         var fixture = new b2FixtureDef();
         fixture.isSensor = true;
-        fixture.shape = new b2CircleShape( g2p(this.radius) );
+        fixture.shape = new b2PolygonShape();
+        var w = this.image.width;
+        var h = this.image.height;
+        fixture.shape.SetAsBox( w/PPM * 0.5, h/PPM * 0.5 );
         
         this.body.CreateFixture( fixture );
         return this;
@@ -40,4 +45,4 @@ function LevelChanger() {
     };
 }
 
-LevelChanger.prototype = new Ball();
+LevelChanger.prototype = new ImageObject();
