@@ -79,6 +79,7 @@ function Player() {
         
         if( this.die ) {
             this.body.SetPosition( this.startPos );
+            g_Camera.shake = 0;
             this.die = false;
         }
         
