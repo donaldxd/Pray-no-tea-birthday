@@ -21,7 +21,7 @@ function Level5() {
     };
     
     this.update = function( dt ) {
-        this.updateEverything();
+        this.updateEverything( dt );
         
         if( this.done ) {
             // New screen!

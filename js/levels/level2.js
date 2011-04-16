@@ -36,7 +36,7 @@ function Level2() {
     };
     
     this.update = function( dt ) {
-        this.updateEverything();
+        this.updateEverything( dt );
         
         if( this.done ) {
             this.gameScreen.changeLevel( new Level3().startUpLevel3( this.gameScreen ) );
