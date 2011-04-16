@@ -25,6 +25,7 @@ function ResourceLoader() {
         this.images[11] = "img/level2.png";
         this.images[12] = "img/carrot.png";
         this.images[12] = "img/smallcarrot.png";
+        this.images[13] = "img/gameover.jpg";
         
         for( var i=0; i<this.images.length; i++ ) {
             var img = new Image;

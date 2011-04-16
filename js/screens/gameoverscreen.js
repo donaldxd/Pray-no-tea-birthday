@@ -6,9 +6,12 @@
 
 function GameOverScreen() {
     
+    this.image = new Image();
+    
     this.startUpGameOverScreen = function() {
         g_GameManager.topScreen().stopUpdate();
-
+        this.image.src = "img/gameover.jpg";
+        
         this.startUpScreen();
         
         this.startTime = new Date();
@@ -16,8 +19,7 @@ function GameOverScreen() {
     }
     
     this.render = function( context ) {
-        context.font = "100px sans-serif"
-        context.fillText( "GAME OVER", 110, SCREEN_HEIGHT/2 );
+        context.drawImage( this.image, 0, 0);
     }
     
     this.update = function( dt ) {
