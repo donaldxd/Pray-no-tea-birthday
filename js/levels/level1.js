@@ -21,8 +21,7 @@ function Level1() {
             new Item().startUpItem( gs, 430, 50 );
             new Item().startUpItem( gs, 440, 50 );
             new Item().startUpItem( gs, 450, 50 );
-        }
-        new Monster().startUpMonster( this, 300, 400 );*/
+        }*/
         
         this.createBoundingBox();
         
